@@ -115,7 +115,8 @@ nav {
     padding: 80px 10% 40px 10%;
     background: radial-gradient(circle at top right, #0f172a 0%, var(--bg-darkest) 70%);
     gap: 2rem;
-    overflow: hidden;
+    /* REMOVED overflow:hidden to ensure nothing gets cut off */
+    position: relative; 
 }
 
 .hero-content { flex: 1; max-width: 600px; z-index: 2; }
@@ -191,20 +192,17 @@ nav {
 .btn-secondary:hover { background: rgba(0, 229, 255, 0.1); transform: scale(1.05); }
 
 /* =========================================
-   5. GRID & CARDS (STRICT CENTERING)
+   5. GRID & CARDS (FIXED VISIBILITY)
    ========================================= */
 .grid-container, .grid-container-compact {
     padding: 4rem 10%;
     display: grid;
-    /* Use auto-fit but with a constrained max-width to force centering */
     grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); 
     gap: 2rem;
     background-color: var(--bg-darkest);
-    
-    /* --- THE CENTERING MAGIC --- */
     justify-content: center; 
     max-width: 1400px;
-    margin: 0 auto; /* Centers the whole grid block */
+    margin: 0 auto;
 }
 
 .glow-card {
@@ -216,14 +214,15 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    opacity: 0;
+    
+    /* FIX: Ensure they are visible by default */
+    opacity: 1; 
 }
 
-.glow-card.visible { animation: fadeInUp 0.8s forwards; }
-.glow-card:nth-child(1) { animation-delay: 0.1s; }
-.glow-card:nth-child(2) { animation-delay: 0.2s; }
-.glow-card:nth-child(3) { animation-delay: 0.3s; }
-.glow-card:nth-child(4) { animation-delay: 0.4s; }
+/* Optional: Only animate if the JS class is added */
+.glow-card.visible {
+    animation: fadeInUp 0.8s backwards; 
+}
 
 .glow-card:hover {
     border-color: var(--accent-color);
@@ -317,7 +316,7 @@ nav {
 .code-keyword { color: var(--accent-color); }
 
 /* =========================================
-   7. TIMELINE & PROJECTS (STRICT CENTERING)
+   7. TIMELINE & PROJECTS
    ========================================= */
 .page-header { 
     padding: 8rem 5% 3rem 5%; 
@@ -325,7 +324,6 @@ nav {
     background: radial-gradient(circle at top, #1e293b 0%, var(--bg-darkest) 70%); 
 }
 
-/* 1. Center the Titles */
 .section-title {
     font-size: 1.8rem;
     margin-bottom: 3rem;
@@ -333,39 +331,37 @@ nav {
     color: var(--text-primary);
     position: relative;
     padding-bottom: 15px;
-    border-left: none !important; /* Force override old style */
+    border-left: none !important;
 }
 .section-title::after {
     content: '';
     position: absolute;
     bottom: 0; 
     left: 50%;
-    transform: translateX(-50%); /* Keeps underline centered */
+    transform: translateX(-50%);
     width: 60px; 
     height: 4px;
     background: var(--accent-color);
     border-radius: 2px;
 }
 
-/* 2. Center the Timeline Block */
 .timeline {
     border-left: 3px solid #1e293b;
-    /* This centers the timeline container itself */
     margin-left: auto !important; 
     margin-right: auto !important;
-    
-    max-width: 700px; /* Constrain width to look centered */
+    max-width: 700px;
     padding-left: 30px;
     position: relative;
     width: 100%;
 }
 
-.timeline-item { position: relative; margin-bottom: 3rem; opacity: 0; transition: 1s; }
-.timeline-item.visible { opacity: 1; transform: translateX(0); }
+/* FIX: Ensure visibility here too */
+.timeline-item { position: relative; margin-bottom: 3rem; opacity: 1; transition: 1s; }
+.timeline-item.visible { animation: fadeInUp 0.8s backwards; }
 
 .timeline-dot {
     position: absolute;
-    left: -42px; /* Perfectly aligned to the centered border */
+    left: -42px;
     top: 5px;
     width: 20px;
     height: 20px;
@@ -378,7 +374,7 @@ nav {
 .footer { padding: 2rem; text-align: center; background: var(--bg-darkest); color: var(--text-secondary); border-top: 1px solid #1e293b; font-size: 0.9rem; }
 
 /* =========================================
-   8. MEDIA QUERIES (MOBILE FIXES)
+   8. MEDIA QUERIES
    ========================================= */
 @media (max-width: 1024px) {
     .hero h1 { font-size: 3rem; }
@@ -386,21 +382,18 @@ nav {
 }
 
 @media (max-width: 768px) {
-    /* Navbar */
     .logo { font-size: 1.1rem; }
     .nav-links { gap: 15px; }
     .nav-item { font-size: 0.8rem; padding: 5px; }
     
-    /* Hero */
     .hero { flex-direction: column-reverse; justify-content: center; text-align: center; padding-top: 100px; height: auto; }
     .hero-content { display: flex; flex-direction: column; align-items: center; }
     .hero-buttons { justify-content: center; width: 100%; }
     .btn { width: 100%; max-width: 300px; }
     .profile-pic { width: 250px; height: 250px; margin-bottom: 2rem; }
     
-    /* Mobile Timeline - Expands to fit screen */
     .timeline {
-        margin: 0 !important; /* Reset margin for full width */
+        margin: 0 !important;
         width: 100%; 
         max-width: 100%;
         padding-left: 20px; 
@@ -414,9 +407,6 @@ nav {
     }
     .timeline-item { padding-right: 0; }
     
-    /* Grid */
     .grid-container { padding: 2rem 5%; gap: 1.5rem; }
-    
-    /* Section Headers */
     .section-title { font-size: 1.5rem; }
 }
