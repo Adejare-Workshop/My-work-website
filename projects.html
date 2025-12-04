@@ -46,7 +46,7 @@
                                 <li><strong>MedCLIP (Vision):</strong> Employed a vision-language model to extract 512-dimensional semantic embeddings from ultrasound images, overcoming the scarcity of labeled medical data.</li>
                                 <li><strong>TabNet (Tabular):</strong> Utilized an attention-based network to process clinical metadata and radiometric features (area, solidity, extent) extracted via <em>regionprops</em>.</li>
                                 <li><strong>Early Fusion Strategy:</strong> Concatenated image embeddings with 64-dimensional tabular embeddings to create a unified 576-dim vector for joint classification.</li>
-                                <li><strong>Performance:</strong> Achieved <strong>82.7% Accuracy</strong> and <strong>87.1% ROC-AUC</strong>, significantly outperforming unimodal baselines (60.1% accuracy for image-only models).</li>
+                                <li><strong>Performance:</strong> Achieved <strong>82.7% Accuracy</strong> and <strong>87.1% ROC-AUC</strong>, significantly outperforming unimodal baselines.</li>
                             </ul>
                         </div>
                     </div>
@@ -160,7 +160,6 @@
     </footer>
 
     <script>
-        // Trigger animations when elements scroll into view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -169,7 +168,6 @@
             });
         }, { threshold: 0.1 });
 
-        // Target both sections and individual timeline items/cards
         document.querySelectorAll('.scroll-animate, .timeline-item').forEach((el) => observer.observe(el));
     </script>
 
