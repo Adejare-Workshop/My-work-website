@@ -191,15 +191,20 @@ nav {
 .btn-secondary:hover { background: rgba(0, 229, 255, 0.1); transform: scale(1.05); }
 
 /* =========================================
-   5. GRID & CARDS
+   5. GRID & CARDS (STRICT CENTERING)
    ========================================= */
 .grid-container, .grid-container-compact {
     padding: 4rem 10%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Use auto-fit but with a constrained max-width to force centering */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); 
     gap: 2rem;
     background-color: var(--bg-darkest);
+    
+    /* --- THE CENTERING MAGIC --- */
     justify-content: center; 
+    max-width: 1400px;
+    margin: 0 auto; /* Centers the whole grid block */
 }
 
 .glow-card {
@@ -211,7 +216,7 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    opacity: 0; /* Starts hidden for JS animation */
+    opacity: 0;
 }
 
 .glow-card.visible { animation: fadeInUp 0.8s forwards; }
@@ -271,7 +276,7 @@ nav {
 .skill-tag.dark { border: 1px solid #334155; color: var(--text-secondary); background: #1e293b; }
 .skills-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 
-/* Modal Styles */
+/* Modal */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -312,36 +317,47 @@ nav {
 .code-keyword { color: var(--accent-color); }
 
 /* =========================================
-   7. TIMELINE & PROJECTS PAGE (CENTERED)
+   7. TIMELINE & PROJECTS (STRICT CENTERING)
    ========================================= */
-.page-header { padding: 8rem 5% 3rem 5%; text-align: center; background: radial-gradient(circle at top, #1e293b 0%, var(--bg-darkest) 70%); }
+.page-header { 
+    padding: 8rem 5% 3rem 5%; 
+    text-align: center; 
+    background: radial-gradient(circle at top, #1e293b 0%, var(--bg-darkest) 70%); 
+}
 
+/* 1. Center the Titles */
 .section-title {
     font-size: 1.8rem;
     margin-bottom: 3rem;
     text-align: center;
-    border-left: none;
     color: var(--text-primary);
     position: relative;
     padding-bottom: 15px;
+    border-left: none !important; /* Force override old style */
 }
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 60px; height: 4px;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%); /* Keeps underline centered */
+    width: 60px; 
+    height: 4px;
     background: var(--accent-color);
     border-radius: 2px;
 }
 
-/* CENTERED TIMELINE */
+/* 2. Center the Timeline Block */
 .timeline {
     border-left: 3px solid #1e293b;
-    margin: 0 auto;
-    max-width: 800px;
+    /* This centers the timeline container itself */
+    margin-left: auto !important; 
+    margin-right: auto !important;
+    
+    max-width: 700px; /* Constrain width to look centered */
     padding-left: 30px;
     position: relative;
+    width: 100%;
 }
 
 .timeline-item { position: relative; margin-bottom: 3rem; opacity: 0; transition: 1s; }
@@ -349,7 +365,7 @@ nav {
 
 .timeline-dot {
     position: absolute;
-    left: -42px;
+    left: -42px; /* Perfectly aligned to the centered border */
     top: 5px;
     width: 20px;
     height: 20px;
@@ -382,9 +398,9 @@ nav {
     .btn { width: 100%; max-width: 300px; }
     .profile-pic { width: 250px; height: 250px; margin-bottom: 2rem; }
     
-    /* Mobile Timeline - Fixes squashing by using full width */
+    /* Mobile Timeline - Expands to fit screen */
     .timeline {
-        margin: 0; 
+        margin: 0 !important; /* Reset margin for full width */
         width: 100%; 
         max-width: 100%;
         padding-left: 20px; 
