@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adejare Adelugba | ML & Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ADEJARE.AI</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item active">HOME</a>
+            <a href="projects.html" class="nav-item">PROJECTS & EXP</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        
+        <div class="hero-content">
+            <h1>Adejare Adelugba</h1>
+            <p>Computer Science Graduate & ML Engineer.<br>Specializing in Automation, Web Scraping, and Predictive Models.</p>
+            
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.querySelector('.grid-container').scrollIntoView({behavior: 'smooth'})">View Work</button>
+                <a href="https://github.com/adelugbaadejare034-blip" target="_blank" rel="noopener" class="link-reset">
+                    <button class="btn btn-secondary"><i class="fab fa-github"></i> GitHub Profile</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image-container">
+            <img src="google.jpg" alt="Adejare Adelugba" class="profile-pic">
+        </div>
+
+    </section>
+
+    <section class="grid-container">
+        
+        <div class="glow-card hidden">
+            <div class="card-content">
+                <h3>Polling Unit Scraper</h3>
+                <p>Selenium-based automation collecting polling unit data across all Nigerian states.</p>
+                <button class="card-btn" onclick="openModal('polling')">View Details</button>
+            </div>
+        </div>
+
+        <div class="glow-card hidden">
+            <div class="card-content">
+                <h3>Disease Prediction</h3>
+                <p>Random Forest model for kidney disease detection with end-to-end preprocessing.</p>
+                <button class="card-btn" onclick="openModal('disease')">View Details</button>
+            </div>
+        </div>
+
+        <div class="glow-card hidden">
+            <div class="card-content">
+                <h3>Workflow Automation</h3>
+                <p>Reduced manual reporting time via Python pipelines at TETFund.</p>
+                <button class="card-btn" onclick="openModal('automation')">View Details</button>
+            </div>
+        </div>
+
+        <div class="glow-card hidden github-card">
+            <div class="card-content center-content">
+                <h3>Explore More</h3>
+                <p>Check out my other repositories and experiments directly on GitHub.</p>
+                <a href="https://github.com/adelugbaadejare034-blip" target="_blank" rel="noopener" class="link-reset">
+                    <button class="card-btn">Visit Profile &rarr;</button>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="skills-section hidden">
+        <h2 class="skills-title">Technical Arsenal</h2>
+        <div class="skills-wrapper">
+            <span class="skill-tag accent">Python</span>
+            <span class="skill-tag dark">Selenium</span>
+            <span class="skill-tag accent">Scikit-learn</span>
+            <span class="skill-tag dark">C++ / C#</span>
+            <span class="skill-tag accent">PyTorch</span>
+            <span class="skill-tag dark">Pandas</span>
+            <span class="skill-tag accent">Automation</span>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
+    </footer>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Project Title</h2>
+            <div class="modal-body">
+                <div id="modalDescription">Details...</div>
+                
+                <div class="code-block" id="modalCodeBlock"></div>
+
+                <div class="modal-link-container">
+                    <a id="modalLink" href="#" target="_blank">
+                        View Repository <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. PROJECT DATA ---
+        const projectData = {
+            'polling': {
+                title: 'Polling Unit Scraper',
+                desc: `<strong>Overview:</strong><br>Engineered a Selenium scraper to harvest data from thousands of polling units.<br><br>
+                       <strong>Key Features:</strong>
+                       <ul>
+                           <li>Automated cleaning of mislabeled fields by State/LGA.</li>
+                           <li>Multi-sheet Excel generation for organized output.</li>
+                           <li>Built reusable scraping functions for future scalability.</li>
+                       </ul>`,
+                code: `from selenium import webdriver\n\ndef scrape_state_units(state_url):\n    driver.get(state_url)\n    units = driver.find_elements(By.CLASS_NAME, 'polling-unit')\n    data = [u.text for u in units]\n    return clean_data(data)`,
+                link: 'https://github.com/adelugbaadejare034-blip' 
+            },
+            'disease': {
+                title: 'Kidney Disease Model',
+                desc: `<strong>Overview:</strong><br>Developed at Kontemporary Konsulting Ltd.<br><br>
+                       <strong>Workflow:</strong>
+                       <ul>
+                           <li><strong>Algorithm:</strong> Random Forest Classifier.</li>
+                           <li><strong>Process:</strong> Full end-to-end pipeline including data cleaning, feature selection, and training.</li>
+                           <li><strong>Output:</strong> High-accuracy prediction model.</li>
+                       </ul>`,
+                code: `# Initialize and train model\nmodel = RandomForestClassifier(n_estimators=100)\nmodel.fit(X_train, y_train)\n\n# Evaluate\naccuracy = model.score(X_test, y_test)\nprint(f"Model Accuracy: {accuracy:.2f}")`,
+                link: 'https://github.com/adelugbaadejare034-blip'
+            },
+            'automation': {
+                title: 'TETFund Workflow Automation',
+                desc: `<strong>Overview:</strong><br>Developed during internship at TETFund (Abuja).<br><br>
+                       <strong>Impact:</strong>
+                       <ul>
+                           <li>Eliminated manual data entry for institutional reports.</li>
+                           <li>Utilized Python & Pandas to parse Excel sheets automatically.</li>
+                           <li>Drastically reduced reporting turnaround time.</li>
+                       </ul>`,
+                code: `import pandas as pd\n\ndef automate_report(file_path):\n    df = pd.read_excel(file_path)\n    # Logic to classify institutions\n    processed_df = classify_data(df)\n    processed_df.to_csv('final_report.csv')`,
+                link: 'https://github.com/adelugbaadejare034-blip'
+            }
+        };
+
+        // --- 2. SCROLL ANIMATION ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+        document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+
+        // --- 3. MODAL LOGIC ---
+        function openModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const data = projectData[projectId];
+
+            if(data) {
+                document.getElementById('modalTitle').innerText = data.title;
+                document.getElementById('modalDescription').innerHTML = data.desc;
+                document.getElementById('modalLink').href = data.link;
+                
+                let codeHtml = data.code
+                    .replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                    .replace(/\n/g, '<br>')
+                    .replace(/(def|import|from|return)/g, '<span class="code-keyword">$1</span>');
+
+                document.getElementById('modalCodeBlock').innerHTML = `<code>${codeHtml}</code>`;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) { modal.style.display = 'none'; }
+        }
+    </script>
+</body>
+</html>
