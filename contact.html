@@ -37,7 +37,20 @@
                         <span class="label">Email</span>
                         <div class="value-box">
                             <span id="emailText">adelugbaadejare03@gmail.com</span>
-                            <button class="copy-btn" onclick="copyEmail()" title="Copy Email">
+                            <button class="copy-btn" onclick="copyToClipboard('emailText')" title="Copy Email">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="icon-box"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <span class="label">Phone</span>
+                        <div class="value-box">
+                            <span id="phoneText">0703 802 7765</span>
+                            <button class="copy-btn" onclick="copyToClipboard('phoneText')" title="Copy Number">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -54,10 +67,10 @@
 
                 <div class="social-links">
                     <a href="https://github.com/adelugbaadejare034-blip" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-                    </div>
+                </div>
             </div>
 
-            <form class="contact-form" action="mailto:adelugbaadejare03@gmail.com" method="post" enctype="text/plain">
+            <form class="contact-form" name="submit-to-google-sheet">
                 <h3>Send a Message</h3>
                 
                 <div class="form-group">
@@ -75,7 +88,10 @@
                     <textarea name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message <i class="fas fa-paper-plane"></i></button>
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%;">
+                    Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+                <p id="msg" style="margin-top: 10px; color: #00e5ff; display: none; font-weight: bold;">Message sent successfully!</p>
             </form>
 
         </div>
@@ -87,14 +103,57 @@
     </footer>
 
     <script>
-        // Copy Email Logic
-        function copyEmail() {
-            const email = document.getElementById('emailText').innerText;
-            navigator.clipboard.writeText(email);
-            alert("Email copied to clipboard!");
+        // --- GOOGLE SHEETS CONNECTION ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmSCWrVSrNNRVhTIIkfCzbWU52JWvMFRKdjRyUBY9a5XmlHhmKT60S8QDqR9GiNsdNrQ/exec';
+        
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.getElementById("msg");
+        const btn = document.getElementById("submitBtn");
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Show Loading State
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.style.display = "block";
+                    msg.style.color = "#00e5ff";
+                    msg.innerText = "Message sent successfully!";
+                    
+                    // Reset Button
+                    btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                    btn.disabled = false;
+                    
+                    // Clear Form
+                    setTimeout(() => {
+                        msg.style.display = "none";
+                        form.reset();
+                    }, 5000);
+                })
+                .catch(error => {
+                    msg.style.display = "block";
+                    msg.style.color = "#ff4d4d"; // Red for error
+                    msg.innerText = "Error! Please check your internet.";
+                    console.error('Error!', error.message);
+                    btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+                    btn.disabled = false;
+                });
+        });
+
+        // --- COPY FUNCTION ---
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text);
+            
+            // Temporary visual feedback
+            const originalText = document.getElementById(elementId).innerText;
+            alert("Copied: " + text);
         }
 
-        // Scroll Animation
+        // --- SCROLL ANIMATION ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
