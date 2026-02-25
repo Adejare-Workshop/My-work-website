@@ -90,152 +90,114 @@ function loopBackground() {
     requestAnimationFrame(loopBackground);
 }
 
-// --- 2. TYPING EFFECT ---
-const TypeWriter = function(txtElement, words, wait = 3000) {
-    this.txtElement = txtElement;
-    this.words = words;
-    this.txt = '';
-    this.wordIndex = 0;
-    this.wait = parseInt(wait, 10);
-    this.type();
-    this.isDeleting = false;
-}
+/**
+ * 1. NEURAL BACKGROUND ANIMATION
+ */
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+document.body.prepend(canvas);
+canvas.style.cssText = "position:fixed; top:0; left:0; z-index:-1; background:#050a14;";
 
-TypeWriter.prototype.type = function() {
-    const current = this.wordIndex % this.words.length;
-    const fullTxt = this.words[current];
-    this.txt = this.isDeleting ? fullTxt.substring(0, this.txt.length - 1) : fullTxt.substring(0, this.txt.length + 1);
-    this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-    let typeSpeed = this.isDeleting ? 50 : 100;
-    if(!this.isDeleting && this.txt === fullTxt) { typeSpeed = this.wait; this.isDeleting = true; }
-    else if(this.isDeleting && this.txt === '') { this.isDeleting = false; this.wordIndex++; typeSpeed = 500; }
-    setTimeout(() => this.type(), typeSpeed);
-}
+let particles = [];
+const mouse = { x: null, y: null, radius: 150 };
 
-// --- 3. PROJECT DATA & MODALS ---
-const projectData = {
-    'cancer_fusion': {
-        title: 'Multimodal Breast Cancer Detection',
-        desc: 'B.Sc. Thesis Project. Fused Ultrasound Images (MedCLIP) with Clinical Data (TabNet) using Early Fusion. Resulted in 82.7% Accuracy and 87.1% ROC-AUC.',
-        code: 'fusion_vector = torch.cat((image_emb, tabular_emb), dim=1)\noutput = self.classifier(fusion_vector)',
-        link: 'https://github.com/adelugbaadejare034-blip/Breast_cancer_detention_using_muilt_modal_analysis'
-    },
-    'polling': {
-        title: 'Polling Unit Scraper',
-        desc: 'Selenium-based data pipeline extracting results across all 36 Nigerian states. Reduced manual collection time by 90%.',
-        code: 'driver.get(url)\ndata = driver.find_elements(By.CLASS, "unit")',
-        link: 'https://github.com/adejare-dev'
-    },
-    'automation': {
-        title: 'TETFund Workflow Automation',
-        desc: 'Developed Python pipelines to parse, clean, and classify institutional reports, eliminating manual bottlenecks.',
-        code: 'df = pd.read_excel("report.xlsx")\nprocessed = clean_data(df)',
-        link: 'https://github.com/adejare-dev'
-    },
-    'salary': {
-        title: 'Global Tech Salary Prediction',
-        desc: 'Regression model forecasting tech salaries based on location and experience levels.',
-        code: 'model = RandomForestRegressor(n_estimators=100)\nmodel.fit(X_train, y_train)',
-        link: 'https://github.com/adelugbaadejare034-blip/Salary-Prediction-Using-Global-Tech-Job-Metadata-Regression-Model-'
+window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
     }
-    // Add other project IDs (har, heart, bac, calc) similarly using projectData from your uploaded files.
+    update() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+}
+
+function initBG() {
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    particles = Array.from({length: 80}, () => new Particle());
+}
+
+function animateBG() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+        p.update();
+        ctx.fillStyle = 'rgba(0, 229, 255, 0.3)';
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2); ctx.fill();
+        for (let j = i + 1; j < particles.length; j++) {
+            const d = Math.hypot(p.x - particles[j].x, p.y - particles[j].y);
+            if (d < 150) {
+                ctx.strokeStyle = `rgba(0, 229, 255, ${1 - d/150})`;
+                ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(p.x, p.y);
+                ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+            }
+        }
+    });
+    requestAnimationFrame(animateBG);
+}
+
+/**
+ * 2. CORE UI LOGIC (Typing, Counters, Modals)
+ */
+const projectData = {
+    'cancer': { title: 'Multimodal Cancer Detection', desc: 'B.Sc. Thesis Project: 82.7% accuracy using MedCLIP & TabNet fusion.', link: 'https://github.com/adelugbaadejare034-blip' },
+    'polling': { title: 'Polling Unit Scraper', desc: 'Selenium pipeline for 36 Nigerian states. 90% time reduction.', link: 'https://github.com/adejare-dev' },
+    'automation': { title: 'Workflow Automation', desc: 'Python/Pandas pipelines for institutional report cleaning.', link: 'https://github.com/adejare-dev' }
 };
 
 function openModal(id) {
     const d = projectData[id];
-    if(d) {
-        document.getElementById('modalTitle').innerText = d.title;
-        document.getElementById('modalDescription').innerHTML = d.desc;
-        const codeBlock = document.getElementById('modalCodeBlock');
-        if(codeBlock) codeBlock.innerText = d.code;
-        const linkBtn = document.getElementById('modalLink');
-        if(linkBtn) linkBtn.href = d.link;
-        document.getElementById('projectModal').style.display = 'flex';
-    }
+    document.getElementById('modalTitle').innerText = d.title;
+    document.getElementById('modalDesc').innerText = d.desc;
+    document.getElementById('modalBtn').onclick = () => window.open(d.link, '_blank');
+    document.getElementById('projectModal').style.display = 'flex';
 }
 
-function closeModal() {
-    const modal = document.getElementById('projectModal');
-    if(modal) modal.style.display = 'none';
-}
+function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
 
-// --- 4. STATS COUNTER LOGIC ---
-function runCounters() {
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        const updateCount = () => {
-            const count = +counter.innerText.replace('+', '');
-            const inc = target / 100;
-            if (count < target) {
-                counter.innerText = Math.ceil(count + inc);
-                setTimeout(updateCount, 20);
-            } else {
-                counter.innerText = target + "+";
-            }
-        };
-        updateCount();
-    });
-}
-
-// --- 5. INITIALIZATION & SCROLL OBSERVER ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Canvas Background
-    setupBackground();
-    loopBackground();
-    window.addEventListener('resize', setupBackground);
+    initBG(); animateBG(); window.addEventListener('resize', initBG);
 
-    // Typewriter (Index page only)
-    const txtElement = document.querySelector('.txt-type');
-    if(txtElement) {
-        new TypeWriter(txtElement, JSON.parse(txtElement.getAttribute('data-words')), 2000);
+    // Typing Effect
+    const typeEl = document.querySelector('.txt-type');
+    if(typeEl) {
+        const words = JSON.parse(typeEl.dataset.words);
+        let idx = 0, txt = '', isDel = false;
+        const type = () => {
+            const current = idx % words.length;
+            txt = isDel ? words[current].substring(0, txt.length - 1) : words[current].substring(0, txt.length + 1);
+            typeEl.innerHTML = `<span class="txt">${txt}</span>`;
+            let speed = isDel ? 50 : 150;
+            if(!isDel && txt === words[current]) { speed = 2000; isDel = true; }
+            else if(isDel && txt === '') { isDel = false; idx++; speed = 500; }
+            setTimeout(type, speed);
+        };
+        type();
     }
 
-    // Scroll Animations & Counters
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                if (entry.target.classList.contains('stats-section')) {
-                    runCounters();
-                }
-            }
-        });
+    // Intersection Observer
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
+    document.querySelectorAll('.scroll-animate').forEach(el => obs.observe(el));
 
-    document.querySelectorAll('.scroll-animate, .stats-section').forEach(el => observer.observe(el));
-
-    // --- 6. FORM SUBMISSION (Contact page only) ---
-    const contactForm = document.forms['submit-to-google-sheet'];
-    if(contactForm) {
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmSCWrVSrNNRVhTIIkfCzbWU52JWvMFRKdjRyUBY9a5XmlHhmKT60S8QDqR9GiNsdNrQ/exec';
-        const msg = document.getElementById("msg");
-        const btn = document.getElementById("submitBtn");
-
-        contactForm.addEventListener('submit', e => {
+    // Form Handling
+    const form = document.forms['submit-to-google-sheet'];
+    if(form) {
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            btn.disabled = true;
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(contactForm)})
-                .then(response => {
-                    msg.style.display = "block";
-                    msg.innerText = "Message sent successfully!";
-                    btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
-                    btn.disabled = false;
-                    setTimeout(() => { msg.style.display = "none"; contactForm.reset(); }, 5000);
-                })
-                .catch(error => {
-                    msg.style.display = "block";
-                    msg.style.color = "#ff4d4d";
-                    msg.innerText = "Error! Please check your internet.";
-                    btn.disabled = false;
-                });
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Sending...";
+            fetch('https://script.google.com/macros/s/AKfycbzmSCWrVSrNNRVhTIIkfCzbWU52JWvMFRKdjRyUBY9a5XmlHhmKT60S8QDqR9GiNsdNrQ/exec', { method: 'POST', body: new FormData(form)})
+                .then(() => { btn.innerText = "Sent!"; form.reset(); })
+                .catch(() => btn.innerText = "Error!");
         });
     }
 });
 
-// Global helpers for modals
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.onclick = (e) => { if(e.target == document.getElementById('projectModal')) closeModal(); };
+window.openModal = openModal; window.closeModal = closeModal;
