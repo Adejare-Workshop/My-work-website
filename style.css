@@ -415,3 +415,11 @@ nav {
     .grid-container { grid-template-columns: 1fr; }
     .contact-container { grid-template-columns: 1fr; }
 }
+
+#neural-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
