@@ -3,200 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adejare Adelugba - ML Engineer</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Adejare Adelugba | ML & Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Neural Network Canvas Background -->
-    <canvas id="neural-bg"></canvas>
 
-    <!-- Navigation -->
     <nav>
-        <div class="logo">A.A.</div>
+        <div class="logo">ADEJARE.AI</div>
         <div class="nav-links">
-            <a href="#home" class="nav-item active">Home</a>
-            <a href="#about" class="nav-item">About</a>
-            <a href="#projects" class="nav-item">Projects</a>
-            <a href="#skills" class="nav-item">Skills</a>
-            <a href="#contact" class="nav-item">Contact</a>
+            <a href="index.html" class="nav-item active">HOME</a>
+            <a href="projects.html" class="nav-item">PROJECTS & EXP</a>
+            <a href="contact.html" class="nav-item">CONTACT</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content glass-panel">
-                <h1>Adejare Adelugba</h1>
-                <div class="typing-text">
-                    <span class="txt-type" data-wait="2000" data-words='["Machine Learning Engineer", "Data Scientist", "Automation Expert"]'></span>
-                </div>
-                <p>Computer Science Graduate | IT Support, Data Systems & Automation</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Adejare Adelugba</h1>
+            <h2 class="typing-text">I am a <span class="txt-type" data-wait="2000" data-words='["Machine Learning Engineer", "Data Scientist", "Python Programmer", "Researcher"]'></span></h2>
+            
+            <p>Computer Science Graduate | IT Support, Data Systems & Automation</p>
+            
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.querySelector('.stats-section').scrollIntoView({behavior: 'smooth'})">View Impact</button>
+                <a href="https://github.com/adejare-dev" target="_blank" rel="noopener" class="link-reset">
+                    <button class="btn btn-secondary"><i class="fab fa-github"></i> GitHub Profile</button>
+                </a>
             </div>
-            <img src="assets/profile.jpg" alt="Adejare Adelugba" class="profile-pic glass-profile">
-            <div class="scroll-down">↓</div>
-        </section>
+        </div>
 
-        <!-- Statistics Section -->
-        <section class="stats-section">
-            <div class="stat-item glass-stat">
-                <div class="counter" data-target="0">0</div>
-                <p>Years Experience</p>
-            </div>
-            <div class="stat-item glass-stat">
-                <div class="counter" data-target="4">0</div>
-                <p>Projects Completed</p>
-            </div>
-            <div class="stat-item glass-stat">
-                <div class="counter" data-target="92">0</div>
-                <p>% Accuracy (Thesis)</p>
-            </div>
-            <div class="stat-item glass-stat">
-                <div class="counter" data-target="15000">0</div>
-                <p>Data Points Scraped</p>
-            </div>
-        </section>
+        <div class="hero-image-container">
+            <img src="per work.jpg" alt="Adejare Adelugba" class="profile-pic">
+        </div>
 
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <h2 class="section-title glass-title">The Engineer Behind the Code</h2>
-            <div class="about-content">
-                <div class="about-text glass-panel">
-                    <span class="lead">Bridging Machine Learning with Real-World Impact</span>
-                    <p>I'm a Computer Science graduate passionate about leveraging AI to solve complex problems. My journey combines academic excellence in machine learning with practical experience in data systems automation.</p>
-                    <p>From developing multimodal cancer detection models to building large-scale data scraping pipelines, I focus on creating solutions that matter. My thesis on early breast cancer detection achieved 92% accuracy using MedCLIP and TabNet.</p>
-                    <p>Currently, I'm exploring advanced ML architectures and contributing to open-source projects that democratize AI access.</p>
-                </div>
-                <div class="highlight-card glass-panel">
-                    <h3>⚡ Quick Highlights</h3>
-                    <ul>
-                        <li><strong>🔬 Research</strong> <span>Multimodal Cancer Detection</span></li>
-                        <li><strong>🤖 ML Stack</strong> <span>PyTorch, MedCLIP, TabNet</span></li>
-                        <li><strong>⚙️ Automation</strong> <span>Python, Selenium, Excel</span></li>
-                        <li><strong>🎓 Education</strong> <span>B.Sc. Computer Science</span></li>
-                    </ul>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section class="stats-section scroll-animate">
+        <div class="stat-item">
+            <h2 class="counter" data-target="3">0</h2>
+            <p>Years Experience</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="15">0</h2>
+            <p>Projects Completed</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="87">0</h2>
+            <p>% Accuracy (Thesis)</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="1000">0</h2>
+            <p>Data Points Scraped</p>
+        </div>
+    </section>
+
+    <section class="grid-container">
+        <div class="glow-card scroll-animate">
+            <div class="card-content">
+                <h3>Multimodal Cancer Detection</h3>
+                <p><strong>B.Sc. Final Year Project:</strong> Early breast cancer detection using MedCLIP and TabNet with Early Fusion strategy.</p>
+                <button class="card-btn" onclick="openModal('cancer_fusion')">View Analysis</button>
+            </div>
+        </div>
+
+        <div class="glow-card scroll-animate">
+            <div class="card-content">
+                <h3>Polling Unit Scraper</h3>
+                <p>Selenium-based automation collecting polling unit data across all Nigerian states.</p>
+                <button class="card-btn" onclick="openModal('polling')">View Details</button>
+            </div>
+        </div>
+
+        <div class="glow-card scroll-animate">
+            <div class="card-content">
+                <h3>Workflow Automation</h3>
+                <p>Reduced manual reporting time via Python pipelines at TETFund.</p>
+                <button class="card-btn" onclick="openModal('automation')">View Details</button>
+            </div>
+        </div>
+
+        <div class="glow-card scroll-animate github-card">
+            <div class="card-content center-content">
+                <h3>Explore More</h3>
+                <p>Check out my other repositories and experiments directly on GitHub.</p>
+                <a href="https://github.com/adelugbaadejare034-blip" target="_blank" rel="noopener" class="link-reset">
+                    <button class="card-btn">Visit Profile &rarr;</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section scroll-animate">
+        <h2 class="skills-title">Technical Arsenal</h2>
+        
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Languages</h4>
+                <div class="skills-wrapper">
+                    <span class="skill-tag accent">Python</span>
+                    <span class="skill-tag dark">C#</span>
+                    <span class="skill-tag dark">C++</span>
+                    <span class="skill-tag dark">Web Development</span>
                 </div>
             </div>
-        </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2 class="section-title glass-title">Featured Projects</h2>
-            <div class="grid-container">
-                <div class="glow-card glass-panel">
-                    <div class="card-content">
-                        <h3>Multimodal Cancer Detection</h3>
-                        <p>B.Sc. Final Year Project: Early breast cancer detection using MedCLIP and TabNet with Early Fusion strategy.</p>
-                        <div class="tech-tags">
-                            <span>MedCLIP</span><span>TabNet</span><span>PyTorch</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="glow-card glass-panel">
-                    <div class="card-content">
-                        <h3>Polling Unit Scraper</h3>
-                        <p>Selenium-based automation collecting polling unit data across all Nigerian states.</p>
-                        <div class="tech-tags">
-                            <span>Selenium</span><span>Python</span><span>Automation</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="glow-card glass-panel">
-                    <div class="card-content">
-                        <h3>Workflow Automation</h3>
-                        <p>Reduced manual reporting time via Python pipelines at TETFund.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>Pandas</span><span>Excel</span>
-                        </div>
-                    </div>
+            <div class="skill-category">
+                <h4>AI Models & Machine learning Tools </h4>
+                <div class="skills-wrapper">
+                    <span class="skill-tag accent">PyTorch</span>
+                    <span class="skill-tag accent">MedCLIP</span>
+                    <span class="skill-tag accent">TabNet</span>
+                    <span class="skill-tag dark">Scikit-Learn</span>
+                    <span class="skill-tag dark">Pandas</span>
                 </div>
             </div>
-        </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="skills-section">
-            <h2 class="section-title glass-title">Technical Arsenal</h2>
-            <div class="skills-grid">
-                <div class="skill-category glass-panel">
-                    <h4>Languages</h4>
-                    <div class="skills-wrapper">
-                        <span class="skill-tag accent">Python</span>
-                        <span class="skill-tag dark">C#</span>
-                        <span class="skill-tag dark">C++</span>
-                        <span class="skill-tag accent">Web Dev</span>
-                    </div>
-                </div>
-                <div class="skill-category glass-panel">
-                    <h4>AI & ML Tools</h4>
-                    <div class="skills-wrapper">
-                        <span class="skill-tag accent">PyTorch</span>
-                        <span class="skill-tag dark">MedCLIP</span>
-                        <span class="skill-tag dark">TabNet</span>
-                        <span class="skill-tag accent">Scikit-Learn</span>
-                        <span class="skill-tag dark">Pandas</span>
-                    </div>
-                </div>
-                <div class="skill-category glass-panel">
-                    <h4>Work Tools</h4>
-                    <div class="skills-wrapper">
-                        <span class="skill-tag accent">Selenium</span>
-                        <span class="skill-tag dark">Git/GitHub</span>
-                        <span class="skill-tag dark">Jupyter</span>
-                        <span class="skill-tag accent">Excel</span>
-                        <span class="skill-tag dark">Automation</span>
-                    </div>
+            <div class="skill-category">
+                <h4>Work Tools</h4>
+                <div class="skills-wrapper">
+                    <span class="skill-tag dark">Selenium</span>
+                    <span class="skill-tag dark">Git/GitHub</span>
+                    <span class="skill-tag dark">Jupyter</span>
+                    <span class="skill-tag dark">Excel Automation</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <h2 class="section-title glass-title">Let's Connect</h2>
-            <div class="contact-container">
-                <div class="contact-info glass-panel">
-                    <div class="info-item">
-                        <div class="icon-box">📧</div>
-                        <div class="value">adejare.adelugba@example.com</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="icon-box">📱</div>
-                        <div class="value">+234 XXX XXX XXXX</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="icon-box">📍</div>
-                        <div class="value">Nigeria</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="icon-box">🔗</div>
-                        <div class="value">github.com/yourusername</div>
-                    </div>
-                </div>
-                <form class="contact-form glass-panel" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer glass-footer">
-        <p>© 2025 Adejare Adelugba. Crafted with precision and purpose.</p>
+    <footer class="footer">
+        <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
     </footer>
 
-    <!-- ALL JavaScript in one file -->
-    <script src="script.js"></script>
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Project Title</h2>
+            <div class="modal-body">
+                <div id="modalDescription">Details...</div>
+                <div class="code-block" id="modalCodeBlock"></div>
+                <div class="modal-link-container">
+                    <a id="modalLink" href="#" target="_blank">View Repository <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. TYPING EFFECT LOGIC ---
+        const TypeWriter = function(txtElement, words, wait = 3000) {
+            this.txtElement = txtElement;
+            this.words = words;
+            this.txt = '';
+            this.wordIndex = 0;
+            this.wait = parseInt(wait, 10);
+            this.type();
+            this.isDeleting = false;
+        }
+
+        TypeWriter.prototype.type = function() {
+            const current = this.wordIndex % this.words.length;
+            const fullTxt = this.words[current];
+
+            if(this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+            let typeSpeed = 100;
+            if(this.isDeleting) { typeSpeed /= 2; }
+
+            if(!this.isDeleting && this.txt === fullTxt) {
+                typeSpeed = this.wait;
+                this.isDeleting = true;
+            } else if(this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.wordIndex++;
+                typeSpeed = 500;
+            }
+
+            setTimeout(() => this.type(), typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+        function init() {
+            const txtElement = document.querySelector('.txt-type');
+            const words = JSON.parse(txtElement.getAttribute('data-words'));
+            const wait = txtElement.getAttribute('data-wait');
+            new TypeWriter(txtElement, words, wait);
+        }
+
+        // --- 2. NUMBER COUNTER ANIMATION ---
+        const counters = document.querySelectorAll('.counter');
+        const runCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / 200; // Speed
+
+                if(count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(runCounters, 20); // Recursion
+                } else {
+                    counter.innerText = target + "+"; // Add plus sign at end
+                }
+            });
+        }
+
+        // --- 3. SCROLL VISIBILITY + TRIGGER COUNTERS ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // If it's the stats section, start counting
+                    if (entry.target.classList.contains('stats-section')) {
+                        runCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-animate, .stats-section').forEach((el) => observer.observe(el));
+
+        // --- 4. MODAL DATA (Same as before) ---
+        const projectData = {
+            'cancer_fusion': {
+                title: 'Early Detection of Breast Cancer (Multimodal)',
+                desc: `<strong>Overview:</strong><br>B.Sc. Thesis Project. Addressed limitations of single-modality screening by fusing Ultrasound Images with Clinical Data.<br><br>
+                       <strong>Technical Architecture:</strong>
+                       <ul>
+                           <li><strong>Vision:</strong> Used <em>MedCLIP</em> to extract 512-dim semantic embeddings.</li>
+                           <li><strong>Tabular:</strong> Used <em>TabNet</em> to process clinical/radiometric data.</li>
+                           <li><strong>Fusion:</strong> Concatenated vectors in an <em>Early Fusion</em> strategy.</li>
+                       </ul>
+                       <br><strong>Key Results:</strong>
+                       <ul>
+                           <li>Accuracy: <strong>82.7%</strong></li>
+                           <li>ROC-AUC: <strong>87.1%</strong></li>
+                       </ul>`,
+                code: `# Fusion Logic\nfusion_vector = torch.cat((image_emb, tabular_emb), dim=1)\noutput = self.classifier(fusion_vector)`,
+                link: 'https://github.com/adelugbaadejare034-blip'
+            },
+            'polling': {
+                title: 'Polling Unit Scraper',
+                desc: 'Engineered a Selenium scraper to harvest data from thousands of polling units. Features included automated cleaning and multi-sheet Excel generation.',
+                code: `def scrape_state(url):\n  driver.get(url)\n  data = driver.find_elements(By.CLASS, "unit")\n  return [d.text for d in data]`,
+                link: 'https://github.com/adejare-dev' 
+            },
+            'automation': {
+                title: 'TETFund Workflow Automation',
+                desc: 'Developed during internship at TETFund (Abuja). Eliminated manual reporting bottlenecks using Python & Pandas.',
+                code: `df = pd.read_excel("report.xlsx")\nprocessed = clean_data(df)\nprocessed.to_csv("final.csv")`,
+                link: 'https://github.com/adejare-dev'
+            }
+        };
+
+        function openModal(id) {
+            const d = projectData[id];
+            if(d) {
+                document.getElementById('modalTitle').innerText = d.title;
+                document.getElementById('modalDescription').innerHTML = d.desc;
+                document.getElementById('modalLink').href = d.link;
+                document.getElementById('modalCodeBlock').innerText = d.code;
+                document.getElementById('projectModal').style.display = 'flex';
+            }
+        }
+        function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
+        window.onclick = function(e) { if(e.target == document.getElementById('projectModal')) closeModal(); }
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
