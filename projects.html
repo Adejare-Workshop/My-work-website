@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><title>Experience | Adejare Adelugba</title>
+    <meta charset="UTF-8"><title>Projects | Adejare Adelugba</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <div class="logo">ADEJARE.AI</div>
-        <div class="nav-links">
-            <a href="index.html" class="nav-item">HOME</a>
-            <a href="projects.html" class="nav-item active">PROJECTS & EXP</a>
-            <a href="contact.html" class="nav-item">CONTACT</a>
-        </div>
-    </nav>
+    <nav><div class="logo">ADEJARE.AI</div><div class="nav-links">
+        <a href="index.html" class="nav-item">HOME</a>
+        <a href="projects.html" class="nav-item active">PROJECTS</a>
+        <a href="contact.html" class="nav-item">CONTACT</a>
+    </div></nav>
 
     <div style="padding: 120px 10% 40px;">
-        <h1 class="scroll-animate">Professional Experience</h1>
+        <h1 class="reveal" style="margin-bottom: 3rem;">Impact Log</h1>
         
-        <div class="glass-panel scroll-animate" style="margin: 2rem 0; padding: 2.5rem;">
-            <h3 style="color:var(--accent-color);">Machine Learning Intern @ Kontemporary Konsulting</h3>
-            <p>Researched Deep Learning architectures for medical diagnostics, including Brain Tumor classification and Kidney Disease prediction.</p>
-        </div>
-
-        <div class="glass-panel scroll-animate" style="margin: 2rem 0; padding: 2.5rem;">
-            <h3 style="color:var(--accent-color);">IT & Automation Intern @ TETFund</h3>
-            <p>Developed Python scripts to modernize legacy data processes and automate institutional reports.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="glass-card reveal">
+                <h3>ML Intern @ Kontemporary</h3>
+                <p>Researched DL for medical diagnostics and Vision Transformers.</p>
+                <button onclick="openProject('scraper')" class="btn btn-outline" style="margin-top: 1rem;">View Details</button>
+            </div>
+            
+            <div class="glass-card reveal">
+                <h3>Multimodal Thesis</h3>
+                <p>Landmark University Project on Breast Cancer detection.</p>
+                <button onclick="openProject('cancer')" class="btn btn-outline" style="margin-top: 1rem;">View Details</button>
+            </div>
         </div>
     </div>
 
+    <div id="project-modal" class="modal">
+        <div class="modal-content glass-card">
+            <h2 id="m-title"></h2><p id="m-desc" style="margin:1.5rem 0;"></p>
+            <a href="#" id="m-link" target="_blank" class="btn btn-primary">Repo</a>
+            <button onclick="closeModal()" class="btn btn-outline">Close</button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
