@@ -3,122 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adejare Adelugba | ML & Automation</title>
+    <title>Adejare Adelugba | AI Engineer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
     <nav>
         <div class="logo">ADEJARE.AI</div>
         <div class="nav-links">
             <a href="index.html" class="nav-item active">HOME</a>
-            <a href="projects.html" class="nav-item">PROJECTS & EXP</a>
+            <a href="projects.html" class="nav-item">PROJECTS</a>
             <a href="contact.html" class="nav-item">CONTACT</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Adejare Adelugba</h1>
-            <h2 class="typing-text">I am a <span class="txt-type" data-wait="2000" data-words='["Machine Learning Engineer", "Data Scientist", "Python Programmer", "Researcher"]'></span></h2>
-            <p>Computer Science Graduate | IT Support, Data Systems & Automation</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="document.querySelector('.stats-section').scrollIntoView({behavior: 'smooth'})">View Impact</button>
-                <a href="https://github.com/adejare-dev" target="_blank" class="link-reset">
-                    <button class="btn btn-secondary"><i class="fab fa-github"></i> GitHub</button>
-                </a>
+        <div class="hero-text reveal">
+            <h1>Hi, I'm <span class="accent-text">Adejare Adelugba</span></h1>
+            <h2 style="font-size: 1.5rem; color: var(--text-dim);">
+                I am a <span class="txt-type accent-text" data-words='["ML Engineer", "Data Scientist", "Python Dev"]'></span>
+            </h2>
+            <p style="margin: 1.5rem 0; max-width: 500px;">
+                Computer Science Graduate from Landmark University. 
+                Specializing in building resilient data systems and AI-driven automation.
+            </p>
+            <div style="display: flex; gap: 1rem;">
+                <a href="projects.html" class="btn btn-primary">View Portfolio</a>
+                <a href="https://github.com/adejare-dev" target="_blank" class="btn btn-outline">GitHub</a>
             </div>
         </div>
-        <div class="hero-image-container">
+        <div class="profile-container reveal">
             <img src="per work.jpg" alt="Adejare" class="profile-pic">
         </div>
     </section>
 
-    <section class="stats-section scroll-animate">
-        <div class="stat-item"><h2 class="counter" data-target="3">0</h2><p>Years Experience</p></div>
-        <div class="stat-item"><h2 class="counter" data-target="15">0</h2><p>Projects Completed</p></div>
-        <div class="stat-item"><h2 class="counter" data-target="87">0</h2><p>% Accuracy (Thesis)</p></div>
-        <div class="stat-item"><h2 class="counter" data-target="1000">0</h2><p>Data Points Scraped</p></div>
+    <section id="about" class="reveal" style="padding: 100px 10%; background: var(--glass-bg);">
+        <h2 style="margin-bottom: 2rem;">The Engineer Behind the Code</h2>
+        <div class="glass-card">
+            <p>At <strong>Kontemporary Konsulting Ltd</strong>, I architected a Selenium-based data pipeline that extracted results across all <strong>36 states of Nigeria</strong>, reducing manual work by <strong>90%</strong>.</p>
+        </div>
     </section>
 
-    <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 5rem 10%;">
-        <div class="glow-card">
-            <h3>Multimodal Cancer Detection</h3>
-            <p>B.Sc. Thesis: Fusing MedCLIP vision with TabNet clinical data for 87% AUC accuracy.</p>
-            <button class="btn btn-secondary" onclick="openModal('cancer_fusion')">View Project</button>
-        </div>
-        <div class="glow-card">
-            <h3>Polling Unit Scraper</h3>
-            <p>Selenium-based pipeline extracting structured electoral results across 36 Nigerian states.</p>
-            <button class="btn btn-secondary" onclick="openModal('polling')">Details</button>
-        </div>
-        <div class="glow-card">
-            <h3>Workflow Automation</h3>
-            <p>Python/Pandas pipelines developed for TETFund to eliminate manual data bottlenecks.</p>
-            <button class="btn btn-secondary" onclick="openModal('automation')">Details</button>
+    <div id="project-modal" class="modal">
+        <div class="modal-content glass-card">
+            <h2 id="m-title">Title</h2>
+            <p id="m-desc" style="margin: 1.5rem 0; color: var(--text-dim);"></p>
+            <a href="#" id="m-link" target="_blank" class="btn btn-primary">Source Code</a>
+            <button onclick="closeModal()" class="btn btn-outline">Close</button>
         </div>
     </div>
 
-    <footer class="footer">
-        <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
-    </footer>
-
-    <div id="projectModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Title</h2>
-            <div id="modalDescription" style="margin: 20px 0;"></div>
-            <button class="btn btn-primary" id="modalLinkBtn">View Repository</button>
-        </div>
-    </div>
-
-    <script src="background.js"></script>
-    <script>
-        // Typing Effect & Counters (Kept from your original logic)
-        const TypeWriter = function(txtElement, words, wait = 3000) {
-            this.txtElement = txtElement;
-            this.words = words;
-            this.txt = '';
-            this.wordIndex = 0;
-            this.wait = parseInt(wait, 10);
-            this.type();
-            this.isDeleting = false;
-        }
-        TypeWriter.prototype.type = function() {
-            const current = this.wordIndex % this.words.length;
-            const fullTxt = this.words[current];
-            this.txt = this.isDeleting ? fullTxt.substring(0, this.txt.length - 1) : fullTxt.substring(0, this.txt.length + 1);
-            this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-            let typeSpeed = this.isDeleting ? 50 : 100;
-            if(!this.isDeleting && this.txt === fullTxt) { typeSpeed = this.wait; this.isDeleting = true; }
-            else if(this.isDeleting && this.txt === '') { this.isDeleting = false; this.wordIndex++; typeSpeed = 500; }
-            setTimeout(() => this.type(), typeSpeed);
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const txtElement = document.querySelector('.txt-type');
-            new TypeWriter(txtElement, JSON.parse(txtElement.getAttribute('data-words')), 2000);
-        });
-
-        const projectData = {
-            'cancer_fusion': { title: 'Multimodal Cancer Detection', desc: 'B.Sc. Thesis Project combining Vision (MedCLIP) and Tabular (TabNet) models.', link: 'https://github.com/adelugbaadejare034-blip' },
-            'polling': { title: 'Polling Unit Scraper', desc: 'Automated 90% of data extraction for Nigerian electoral results.', link: 'https://github.com/adejare-dev' },
-            'automation': { title: 'TETFund Automation', desc: 'Python scripts for institutional report classification.', link: 'https://github.com/adejare-dev' }
-        };
-        function openModal(id) {
-            const d = projectData[id];
-            document.getElementById('modalTitle').innerText = d.title;
-            document.getElementById('modalDescription').innerText = d.desc;
-            document.getElementById('modalLinkBtn').onclick = () => window.open(d.link, '_blank');
-            document.getElementById('projectModal').style.display = 'flex';
-        }
-        function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
