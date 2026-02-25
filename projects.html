@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><title>Projects | Adejare Adelugba</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | Adejare Adelugba</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-    <nav><div class="logo">ADEJARE.AI</div><div class="nav-links">
-        <a href="index.html" class="nav-item">HOME</a>
-        <a href="projects.html" class="nav-item active">PROJECTS</a>
-        <a href="contact.html" class="nav-item">CONTACT</a>
-    </div></nav>
 
-    <div style="padding: 120px 10% 40px;">
-        <h1 class="reveal" style="margin-bottom: 3rem;">Impact Log</h1>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-            <div class="glass-card reveal">
-                <h3>ML Intern @ Kontemporary</h3>
-                <p>Researched DL for medical diagnostics and Vision Transformers.</p>
-                <button onclick="openProject('scraper')" class="btn btn-outline" style="margin-top: 1rem;">View Details</button>
-            </div>
-            
-            <div class="glass-card reveal">
-                <h3>Multimodal Thesis</h3>
-                <p>Landmark University Project on Breast Cancer detection.</p>
-                <button onclick="openProject('cancer')" class="btn btn-outline" style="margin-top: 1rem;">View Details</button>
-            </div>
-        </div>
-    </div>
+<nav>
+<div class="logo">ADEJARE.AI</div>
 
-    <div id="project-modal" class="modal">
-        <div class="modal-content glass-card">
-            <h2 id="m-title"></h2><p id="m-desc" style="margin:1.5rem 0;"></p>
-            <a href="#" id="m-link" target="_blank" class="btn btn-primary">Repo</a>
-            <button onclick="closeModal()" class="btn btn-outline">Close</button>
-        </div>
-    </div>
-    <script src="script.js"></script>
+<div class="nav-links">
+<a href="index.html" class="nav-item">HOME</a>
+<a href="projects.html" class="nav-item active">PROJECTS</a>
+<a href="contact.html" class="nav-item">CONTACT</a>
+</div>
+</nav>
+
+<header class="page-header" style="text-align:center;padding:140px 5% 60px;">
+<h1>Professional Projects</h1>
+<p>Research experiments, internships and engineering implementations.</p>
+</header>
+
+<div class="main-wrapper">
+
+<section class="grid-container">
+
+<div class="glow-card">
+<h3>Cancer Detection Research</h3>
+<p>Multimodal ultrasound + clinical feature fusion model.</p>
+</div>
+
+<div class="glow-card">
+<h3>Automation Pipeline Systems</h3>
+<p>Python-based workflow optimization tools.</p>
+</div>
+
+<div class="glow-card">
+<h3>Scraping Intelligence Engine</h3>
+<p>Large-scale polling unit data extraction system.</p>
+</div>
+
+</section>
+
+</div>
+
+<footer class="footer">
+<p>Contact: adelugbaadejare03@gmail.com</p>
+</footer>
+
+<script src="scripts.js"></script>
+
 </body>
 </html>
