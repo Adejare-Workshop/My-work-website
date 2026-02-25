@@ -3,346 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience & Projects | Adejare Adelugba</title>
+    <title>Projects | Adejare Adelugba</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
+    <canvas id="bg-canvas"></canvas>
     <nav>
-        <div class="logo">ML & DL Developer</div>
+        <div class="logo">ADEJARE.AI</div>
         <div class="nav-links">
             <a href="index.html" class="nav-item">HOME</a>
-            <div class="nav-item active">PROJECTS & EXP</div>
+            <a href="about.html" class="nav-item">ABOUT</a>
+            <a href="projects.html" class="nav-item active">PROJECTS & EXP</a>
             <a href="contact.html" class="nav-item">CONTACT</a>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>Professional Experience <span class="text-accent">&</span> Projects</h1>
-        <p>A comprehensive log of my internships, open-source contributions, and research initiatives.</p>
+        <h1>Professional <span class="text-accent">Timeline</span></h1>
     </header>
 
     <div class="main-wrapper">
-
-        <section class="section-block scroll-animate">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Featured Academic Research</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>B.Sc. Final Year Project: Multimodal Breast Cancer Detection</h3>
-                            <span class="company-name">@ Landmark University (Dept. of Computer Science)</span>
-                        </div>
-                        
-                        <div class="role-description">
-                            <p><strong><i class="fas fa-microscope"></i> Research Scope:</strong> Addressed the limitations of single-modality screening by designing a system that combines Ultrasound Imaging with Clinical & Radiometric data.</p>
-                        </div>
-
-                        <div class="project-list-block">
-                            <strong><i class="fas fa-layer-group"></i> Methodology & Tech Stack:</strong>
-                            <ul>
-                                <li><strong>MedCLIP (Vision):</strong> Employed a vision-language model to extract 512-dimensional semantic embeddings from ultrasound images.</li>
-                                <li><strong>TabNet (Tabular):</strong> Utilized an attention-based network to process clinical metadata and radiometric features.</li>
-                                <li><strong>Early Fusion Strategy:</strong> Concatenated image embeddings with 64-dimensional tabular embeddings to create a unified vector.</li>
-                                <li><strong>Performance:</strong> Achieved <strong>82.7% Accuracy</strong> and <strong>87.1% ROC-AUC</strong>, significantly outperforming unimodal baselines.</li>
-                            </ul>
-                            <div style="margin-top: 15px;">
-                                <button class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;" onclick="openModal('cancer_fusion')">View Code & Analysis</button>
-                            </div>
-                        </div>
-                    </div>
+        <section class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Data Systems Architect (Intern)</h3>
+                    <span class="company-name">@ Kontemporary Konsulting Ltd.</span>
+                    <p>Architected a national-scale data pipeline for the INEC portal, extracting results from all 36 states with high-fidelity accuracy.</p>
                 </div>
             </div>
-        </section>
+            </section>
 
-        <section class="section-block scroll-animate">
-            <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Timeline</h2>
-            
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>Machine Learning Intern</h3>
-                            <span class="company-name">@ Kontemporary Konsulting Ltd.</span>
-                        </div>
-                        <div class="role-description">
-                            <p><strong><i class="fas fa-user-check"></i> My Role:</strong> Focused on researching and implementing deep learning architectures for medical diagnostics.</p>
-                        </div>
-                        <div class="project-list-block">
-                            <strong><i class="fas fa-code-branch"></i> Key Deliverables:</strong>
-                            <ul>
-                                <li><strong>Brain Tumor Classification:</strong> Benchmarked Vision Transformers (ViT) against DINOv2 architectures. Implemented Grad-CAM visualization.</li>
-                                <li><strong>Kidney Disease Prediction:</strong> Built and deployed a Random Forest classifier with full preprocessing pipelines.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>IT & Automation Intern</h3>
-                            <span class="company-name">@ TETFund</span>
-                        </div>
-                        <div class="role-description">
-                            <p><strong><i class="fas fa-user-check"></i> My Role:</strong> Tasked with identifying workflow bottlenecks and modernizing legacy data processes.</p>
-                        </div>
-                        <div class="project-list-block">
-                            <strong><i class="fas fa-code-branch"></i> Key Deliverables:</strong>
-                            <ul>
-                                <li><strong>Workflow Automation:</strong> Wrote Python scripts to automatically parse, clean, and classify institutional reports.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="section-block scroll-animate">
-            <h2 class="section-title"><i class="fab fa-github"></i> Featured Code Repositories</h2>
-            <div class="grid-container-compact">
-
-                <div class="glow-card scroll-animate">
-                    <div class="card-content">
-                        <h3>Global Tech Salary Prediction</h3>
-                        <p class="tech-stack">Python • Regression • Pandas</p>
-                        <p>A regression analysis model predicting tech salaries based on global job metadata and experience levels.</p>
-                        <button class="card-btn" onclick="openModal('salary')">View Code</button>
-                    </div>
-                </div>
-
-                <div class="glow-card scroll-animate">
-                    <div class="card-content">
-                        <h3>Multimodal Cancer Detection</h3>
-                        <p class="tech-stack">PyTorch • MedCLIP • TabNet</p>
-                        <p>Codebase for my final year project implementing the Early Fusion strategy for breast cancer detection.</p>
-                        <button class="card-btn" onclick="openModal('cancer_fusion')">View Code</button>
-                    </div>
-                </div>
-
-                <div class="glow-card scroll-animate">
-                    <div class="card-content">
-                        <h3>Human Activity Recognition</h3>
-                        <p class="tech-stack">Time-Series Transformers</p>
-                        <p>End-to-end activity recognition system processing wearable sensor data on the HAR-70 dataset.</p>
-                        <button class="card-btn" onclick="openModal('har')">View Code</button>
-                    </div>
-                </div>
-
-                <div class="glow-card scroll-animate">
-                    <div class="card-content">
-                        <h3>Heart Disease Prediction</h3>
-                        <p class="tech-stack">Scikit-Learn • RandomForestClassifier</p>
-                        <p>Classification model featuring extensive data cleaning, feature selection, and ROC/AUC evaluation metrics.</p>
-                        <button class="card-btn" onclick="openModal('heart')">View Code</button>
-                    </div>
-                </div>
-
-                <div class="glow-card scroll-animate">
-                    <div class="card-content">
-                        <h3>Bunmi Adelugba & Co.</h3>
-                        <p class="tech-stack">HTML/CSS • Client Project</p>
-                        <p>Official website for a Chartered Accounting firm. Features animations, responsive layout, and brand integration.</p>
-                        <button class="card-btn" onclick="openModal('bac')">View Code</button>
-                    </div>
-                </div>
-
-                <div class="glow-card scroll-animate">
-                    <div class="card-content">
-                        <h3>C# Calculator</h3>
-                        <p class="tech-stack">Frontend Logic</p>
-                        <p>A functional, responsive digital calculator demonstrating core Net.Framework and UI logic.</p>
-                        <button class="card-btn" onclick="openModal('calc')">View Code</button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
+        <section class="grid-container">
+            </section>
     </div>
 
-    <footer class="footer">
-        <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
-    </footer>
-
-    <div id="projectModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Project Title</h2>
-            <div class="modal-body">
-                <div id="modalDescription">Details...</div>
-                
-                <div class="code-block" id="modalCodeBlock"></div>
-
-                <div class="modal-link-container">
-                    <a id="modalLink" href="#" target="_blank">
-                        View Repository <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // --- PROJECT DATA ---
-        const projectData = {
-            'salary': {
-                title: 'Global Tech Salary Prediction',
-                desc: `<strong>Overview:</strong><br>A supervised learning project focused on predicting salary trends in the global tech industry.<br><br>
-                       <strong>Key Features:</strong>
-                       <ul>
-                           <li><strong>Data Processing:</strong> Cleaned and encoded global metadata (Location, Role, Experience).</li>
-                           <li><strong>Modeling:</strong> Implemented Regression models to forecast salary ranges with high accuracy.</li>
-                           <li><strong>Analysis:</strong> Feature importance analysis to understand salary drivers.</li>
-                       </ul>`,
-                code: `from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-
-# Train Regression Model
-model = RandomForestRegressor(n_estmations = 100)
-model.fit(X_train, y_train)
-predictions = model.predict(X_test)`,
-                link: 'https://github.com/adelugbaadejare034-blip/Salary-Prediction-Using-Global-Tech-Job-Metadata-Regression-Model-'
-            },
-            'cancer_fusion': {
-                title: 'Early Detection of Breast Cancer (Multimodal)',
-                desc: `<strong>Overview:</strong><br>B.Sc. Thesis Project. Addressed limitations of single-modality screening by fusing Ultrasound Images with Clinical Data.<br><br>
-                       <strong>Technical Architecture:</strong>
-                       <ul>
-                           <li><strong>Vision:</strong> Used <em>MedCLIP</em> to extract 512-dim semantic embeddings.</li>
-                           <li><strong>Tabular:</strong> Used <em>TabNet</em> to process clinical/radiometric data.</li>
-                           <li><strong>Fusion:</strong> Concatenated vectors in an <em>Early Fusion</em> strategy.</li>
-                       </ul>
-                       <br><strong>Key Results:</strong>
-                       <ul>
-                           <li>Accuracy: <strong>82.7%</strong></li>
-                           <li>ROC-AUC: <strong>87.1%</strong></li>
-                       </ul>`,
-                code: `# Fusion Logic (PyTorch)
-fusion_vector = torch.cat((image_emb, tabular_emb), dim=1)
-output = self.classifier(fusion_vector)`,
-                link: 'https://github.com/adelugbaadejare034-blip/Breast_cancer_detention_using_muilt_modal_analysis'
-            },
-            'har': {
-                title: 'Human Activity Recognition (HAR)',
-                desc: `<strong>Overview:</strong><br>An end-to-end deep learning system for recognizing human activities (walking, running, sitting) based on time-series data from wearable sensors.<br><br>
-                       <strong>Key Tech:</strong>
-                       <ul>
-                           <li><strong>Model:</strong> Transformer-based architecture for sequential data.</li>
-                           <li><strong>Dataset:</strong> HAR-70 (High variance sensor data).</li>
-                           <li><strong>Outcome:</strong> High F1-score in classifying complex movement patterns.</li>
-                       </ul>`,
-                code: `class TimeSeriesTransformer(nn.Module):
-    def __init__(self, input_dim, d_model):
-        super().__init__()
-        self.encoder = nn.TransformerEncoderLayer(d_model=d_model, nhead=4)
-        self.fc = nn.Linear(d_model, num_classes)`,
-                link: 'https://github.com/adelugbaadejare034-blip/Real-Time-Human-Activity-Recognition-Using-Time-Series-Transformers-Wearable-Sensors-HAR-70-Dataset-'
-            },
-            'heart': {
-                title: 'Heart Disease Prediction',
-                desc: `<strong>Overview:</strong><br>A robust classification model designed to predict heart disease risk based on patient clinical history.<br><br>
-                       <strong>Workflow:</strong>
-                       <ul>
-                           <li><strong>Preprocessing:</strong> Handling missing values, scaling features, and encoding categorical variables.</li>
-                           <li><strong>Models:</strong> Benchmarked Logistic Regression, Random Forest, and XGBoost.</li>
-                           <li><strong>Evaluation:</strong> Optimized for Recall to minimize false negatives in diagnosis.</li>
-                       </ul>`,
-                code: `from sklearn.ensemble import RandomForestClassifier
-model = RandomForestClassifier(n_estimators=100)
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-print(classification_report(y_test, y_pred))`,
-                link: 'https://github.com/adelugbaadejare034-blip/Heart_disease_risk_prediction_system'
-            },
-            'bac': {
-                title: 'Bunmi Adelugba & Co. Website',
-                desc: `<strong>Overview:</strong><br>A professional, responsive corporate website developed for a Chartered Accounting firm.<br><br>
-                       <strong>Features:</strong>
-                       <ul>
-                           <li><strong>UI/UX:</strong> Clean, corporate design with smooth CSS transitions.</li>
-                           <li><strong>Responsive:</strong> Fully optimized for mobile, tablet, and desktop views.</li>
-                           <li><strong>Branding:</strong> Integrated firm branding colors and service portfolio.</li>
-                       </ul>`,
-                code: `<nav class="navbar">
-  <div class="logo">BAC Chartered Accountants</div>
-  <ul class="nav-links">
-    <li><a href="#services">Audit</a></li>
-    <li><a href="#tax">Taxation</a></li>
-  </ul>
-</nav>`,
-                link: 'https://github.com/2kkiller/BAC'
-            },
-            'calc': {
-                title: 'C# Calculator',
-                desc: `<strong>Overview:</strong><br>A functional digital calculator built using Net>framework.<br><br>
-                       <strong>Tech Stack:</strong> C#, Net. Framework.<br>
-                       <strong>Features:</strong> Handles basic arithmetic operations, error states, and responsive layout.`,
-                code: `function calculate() {
-    try {
-        display.value = eval(display.value);
-    } catch (error) {
-        display.value = "Error";
-    }
-}`,
-                link: 'https://github.com/lifeishardtomove/CALCULATOR'
-            }
-        };
-
-        // --- 2. SCROLL ANIMATION ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-animate, .timeline-item').forEach((el) => observer.observe(el));
-
-        // --- 3. MODAL LOGIC ---
-        function openModal(projectId) {
-            const modal = document.getElementById('projectModal');
-            const data = projectData[projectId];
-
-            if(data) {
-                document.getElementById('modalTitle').innerText = data.title;
-                document.getElementById('modalDescription').innerHTML = data.desc;
-                document.getElementById('modalLink').href = data.link;
-                
-                // Code Highlighting
-                let codeHtml = data.code
-                    .replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                    .replace(/\n/g, '<br>')
-                    .replace(/(def|import|from|return|torch|self|class|function|const|let|var)/g, '<span class="code-keyword">$1</span>');
-
-                document.getElementById('modalCodeBlock').innerHTML = `<code>${codeHtml}</code>`;
-                modal.style.display = 'flex';
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('projectModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('projectModal');
-            if (event.target === modal) { modal.style.display = 'none'; }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
