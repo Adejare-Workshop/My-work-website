@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adejare Adelugba | ML & Automation</title>
+    <title>Adejare Adelugba | Data Systems Architect</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <canvas id="bg-canvas"></canvas>
 
     <nav>
         <div class="logo">ADEJARE.AI</div>
         <div class="nav-links">
             <a href="index.html" class="nav-item active">HOME</a>
+            <a href="about.html" class="nav-item">ABOUT</a>
             <a href="projects.html" class="nav-item">PROJECTS & EXP</a>
             <a href="contact.html" class="nav-item">CONTACT</a>
         </div>
@@ -21,116 +23,36 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Adejare Adelugba</h1>
-            <h2 class="typing-text">I am a <span class="txt-type" data-wait="2000" data-words='["Machine Learning Engineer", "Data Scientist", "Python Programmer", "Researcher"]'></span></h2>
-            
-            <p>Computer Science Graduate | IT Support, Data Systems & Automation</p>
-            
+            <h2 class="typing-text"><span class="txt-type" data-wait="2000" data-words='["Computer Science Graduate", "Data Systems Architect", "Automation Specialist"]'></span></h2>
+            <p>Architecting resilient data systems that solve national-scale bottlenecks.</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="document.querySelector('.stats-section').scrollIntoView({behavior: 'smooth'})">View Impact</button>
-                <a href="https://github.com/adejare-dev" target="_blank" rel="noopener" class="link-reset">
+                <button class="btn btn-primary" onclick="window.location.href='about.html'">View My Story</button>
+                <a href="https://github.com/adejare-dev" target="_blank" class="link-reset">
                     <button class="btn btn-secondary"><i class="fab fa-github"></i> GitHub Profile</button>
                 </a>
             </div>
         </div>
-
         <div class="hero-image-container">
             <img src="per work.jpg" alt="Adejare Adelugba" class="profile-pic">
-        </div>
-
-        <div class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <section class="stats-section scroll-animate">
         <div class="stat-item">
-            <h2 class="counter" data-target="3">0</h2>
-            <p>Years Experience</p>
+            <h2 class="counter" data-target="36">0</h2>
+            <p>States Scraped (INEC)</p>
         </div>
         <div class="stat-item">
-            <h2 class="counter" data-target="15">0</h2>
-            <p>Projects Completed</p>
+            <h2 class="counter" data-target="99">0</h2>
+            <p>% Data Accuracy</p>
         </div>
         <div class="stat-item">
-            <h2 class="counter" data-target="87">0</h2>
-            <p>% Accuracy (Thesis)</p>
+            <h2 class="counter" data-target="90">0</h2>
+            <p>% Process Automation</p>
         </div>
         <div class="stat-item">
-            <h2 class="counter" data-target="1000">0</h2>
-            <p>Data Points Scraped</p>
-        </div>
-    </section>
-
-    <section class="grid-container">
-        <div class="glow-card scroll-animate">
-            <div class="card-content">
-                <h3>Multimodal Cancer Detection</h3>
-                <p><strong>B.Sc. Final Year Project:</strong> Early breast cancer detection using MedCLIP and TabNet with Early Fusion strategy.</p>
-                <button class="card-btn" onclick="openModal('cancer_fusion')">View Analysis</button>
-            </div>
-        </div>
-
-        <div class="glow-card scroll-animate">
-            <div class="card-content">
-                <h3>Polling Unit Scraper</h3>
-                <p>Selenium-based automation collecting polling unit data across all Nigerian states.</p>
-                <button class="card-btn" onclick="openModal('polling')">View Details</button>
-            </div>
-        </div>
-
-        <div class="glow-card scroll-animate">
-            <div class="card-content">
-                <h3>Workflow Automation</h3>
-                <p>Reduced manual reporting time via Python pipelines at TETFund.</p>
-                <button class="card-btn" onclick="openModal('automation')">View Details</button>
-            </div>
-        </div>
-
-        <div class="glow-card scroll-animate github-card">
-            <div class="card-content center-content">
-                <h3>Explore More</h3>
-                <p>Check out my other repositories and experiments directly on GitHub.</p>
-                <a href="https://github.com/adelugbaadejare034-blip" target="_blank" rel="noopener" class="link-reset">
-                    <button class="card-btn">Visit Profile &rarr;</button>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="skills-section scroll-animate">
-        <h2 class="skills-title">Technical Arsenal</h2>
-        
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h4>Languages</h4>
-                <div class="skills-wrapper">
-                    <span class="skill-tag accent">Python</span>
-                    <span class="skill-tag dark">C#</span>
-                    <span class="skill-tag dark">C++</span>
-                    <span class="skill-tag dark">Web Development</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h4>AI Models & Machine learning Tools </h4>
-                <div class="skills-wrapper">
-                    <span class="skill-tag accent">PyTorch</span>
-                    <span class="skill-tag accent">MedCLIP</span>
-                    <span class="skill-tag accent">TabNet</span>
-                    <span class="skill-tag dark">Scikit-Learn</span>
-                    <span class="skill-tag dark">Pandas</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h4>Work Tools</h4>
-                <div class="skills-wrapper">
-                    <span class="skill-tag dark">Selenium</span>
-                    <span class="skill-tag dark">Git/GitHub</span>
-                    <span class="skill-tag dark">Jupyter</span>
-                    <span class="skill-tag dark">Excel Automation</span>
-                </div>
-            </div>
+            <h2 class="counter" data-target="1000000">0</h2>
+            <p>Data Points Managed</p>
         </div>
     </section>
 
@@ -138,152 +60,6 @@
         <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
     </footer>
 
-    <div id="projectModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Project Title</h2>
-            <div class="modal-body">
-                <div id="modalDescription">Details...</div>
-                <div class="code-block" id="modalCodeBlock"></div>
-                <div class="modal-link-container">
-                    <a id="modalLink" href="#" target="_blank">View Repository <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // --- 1. TYPING EFFECT LOGIC ---
-        const TypeWriter = function(txtElement, words, wait = 3000) {
-            this.txtElement = txtElement;
-            this.words = words;
-            this.txt = '';
-            this.wordIndex = 0;
-            this.wait = parseInt(wait, 10);
-            this.type();
-            this.isDeleting = false;
-        }
-
-        TypeWriter.prototype.type = function() {
-            const current = this.wordIndex % this.words.length;
-            const fullTxt = this.words[current];
-
-            if(this.isDeleting) {
-                this.txt = fullTxt.substring(0, this.txt.length - 1);
-            } else {
-                this.txt = fullTxt.substring(0, this.txt.length + 1);
-            }
-
-            this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-
-            let typeSpeed = 100;
-            if(this.isDeleting) { typeSpeed /= 2; }
-
-            if(!this.isDeleting && this.txt === fullTxt) {
-                typeSpeed = this.wait;
-                this.isDeleting = true;
-            } else if(this.isDeleting && this.txt === '') {
-                this.isDeleting = false;
-                this.wordIndex++;
-                typeSpeed = 500;
-            }
-
-            setTimeout(() => this.type(), typeSpeed);
-        }
-
-        document.addEventListener('DOMContentLoaded', init);
-        function init() {
-            const txtElement = document.querySelector('.txt-type');
-            const words = JSON.parse(txtElement.getAttribute('data-words'));
-            const wait = txtElement.getAttribute('data-wait');
-            new TypeWriter(txtElement, words, wait);
-        }
-
-        // --- 2. NUMBER COUNTER ANIMATION ---
-        const counters = document.querySelectorAll('.counter');
-        const runCounters = () => {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const inc = target / 200; // Speed
-
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(runCounters, 20); // Recursion
-                } else {
-                    counter.innerText = target + "+"; // Add plus sign at end
-                }
-            });
-        }
-
-        // --- 3. SCROLL VISIBILITY + TRIGGER COUNTERS ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // If it's the stats section, start counting
-                    if (entry.target.classList.contains('stats-section')) {
-                        runCounters();
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-animate, .stats-section').forEach((el) => observer.observe(el));
-
-        // --- 4. MODAL DATA (Same as before) ---
-        const projectData = {
-            'cancer_fusion': {
-                title: 'Early Detection of Breast Cancer (Multimodal)',
-                desc: `<strong>Overview:</strong><br>B.Sc. Thesis Project. Addressed limitations of single-modality screening by fusing Ultrasound Images with Clinical Data.<br><br>
-                       <strong>Technical Architecture:</strong>
-                       <ul>
-                           <li><strong>Vision:</strong> Used <em>MedCLIP</em> to extract 512-dim semantic embeddings.</li>
-                           <li><strong>Tabular:</strong> Used <em>TabNet</em> to process clinical/radiometric data.</li>
-                           <li><strong>Fusion:</strong> Concatenated vectors in an <em>Early Fusion</em> strategy.</li>
-                       </ul>
-                       <br><strong>Key Results:</strong>
-                       <ul>
-                           <li>Accuracy: <strong>82.7%</strong></li>
-                           <li>ROC-AUC: <strong>87.1%</strong></li>
-                       </ul>`,
-                code: `# Fusion Logic\nfusion_vector = torch.cat((image_emb, tabular_emb), dim=1)\noutput = self.classifier(fusion_vector)`,
-                link: 'https://github.com/adelugbaadejare034-blip'
-            },
-            'polling': {
-                title: 'Polling Unit Scraper',
-                desc: 'Engineered a Selenium scraper to harvest data from thousands of polling units. Features included automated cleaning and multi-sheet Excel generation.',
-                code: `def scrape_state(url):\n  driver.get(url)\n  data = driver.find_elements(By.CLASS, "unit")\n  return [d.text for d in data]`,
-                link: 'https://github.com/adejare-dev' 
-            },
-            'automation': {
-                title: 'TETFund Workflow Automation',
-                desc: 'Developed during internship at TETFund (Abuja). Eliminated manual reporting bottlenecks using Python & Pandas.',
-                code: `df = pd.read_excel("report.xlsx")\nprocessed = clean_data(df)\nprocessed.to_csv("final.csv")`,
-                link: 'https://github.com/adejare-dev'
-            }
-        };
-
-        function openModal(id) {
-            const d = projectData[id];
-            if(d) {
-                document.getElementById('modalTitle').innerText = d.title;
-                document.getElementById('modalDescription').innerHTML = d.desc;
-                document.getElementById('modalLink').href = d.link;
-                document.getElementById('modalCodeBlock').innerText = d.code;
-                document.getElementById('projectModal').style.display = 'flex';
-            }
-        }
-        function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
-        window.onclick = function(e) { if(e.target == document.getElementById('projectModal')) closeModal(); }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
