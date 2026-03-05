@@ -1,5 +1,5 @@
 // =========================================
-// 1. NEURAL BACKGROUND
+// 1. NEURAL BACKGROUND ANIMATION
 // =========================================
 
 const canvas = document.getElementById("neural-bg");
@@ -14,8 +14,11 @@ if (canvas) {
     window.addEventListener("resize", resizeCanvas);
 
     let particles = [];
-    const particleCount = window.matchMedia('(pointer: coarse)').matches ? 40 : 80;
-    const mouse = { x: null, y: null, radius: 150 };
+    const particleCount = window.matchMedia('(pointer: coarse)').matches ? 50 : 90;
+    const connectionDistance = 120;
+    const mouseRadius = 150;
+
+    const mouse = { x: null, y: null };
 
     window.addEventListener("mousemove", function (event) {
         mouse.x = event.x;
@@ -31,33 +34,37 @@ if (canvas) {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 1.5;
+            this.speedX = (Math.random() - 0.5) * 0.8;
+            this.speedY = (Math.random() - 0.5) * 0.8;
+            this.opacity = Math.random() * 0.5 + 0.5;
         }
 
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
 
+            // Bounce off edges
             if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
             if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
 
+            // Mouse interaction
             if (mouse.x !== null && mouse.y !== null) {
                 const dx = mouse.x - this.x;
                 const dy = mouse.y - this.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < mouse.radius) {
-                    const force = (mouse.radius - distance) / mouse.radius;
-                    this.x -= (dx / distance) * force * 2;
-                    this.y -= (dy / distance) * force * 2;
+                if (distance < mouseRadius) {
+                    const force = (mouseRadius - distance) / mouseRadius;
+                    const angle = Math.atan2(dy, dx);
+                    this.x -= Math.cos(angle) * force * 3;
+                    this.y -= Math.sin(angle) * force * 3;
                 }
             }
         }
 
         draw() {
-            ctx.fillStyle = "rgba(0, 229, 255, 0.6)";
+            ctx.fillStyle = `rgba(0, 229, 255, ${this.opacity})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -74,12 +81,13 @@ if (canvas) {
     function connectParticles() {
         for (let a = 0; a < particles.length; a++) {
             for (let b = a + 1; b < particles.length; b++) {
-                let dx = particles[a].x - particles[b].x;
-                let dy = particles[a].y - particles[b].y;
-                let distance = dx * dx + dy * dy;
+                const dx = particles[a].x - particles[b].x;
+                const dy = particles[a].y - particles[b].y;
+                const distanceSquared = dx * dx + dy * dy;
 
-                if (distance < 10000) {
-                    const opacity = 1 - distance / 10000;
+                if (distanceSquared < connectionDistance * connectionDistance) {
+                    const distance = Math.sqrt(distanceSquared);
+                    const opacity = 1 - (distance / connectionDistance);
                     ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.2})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
@@ -92,25 +100,36 @@ if (canvas) {
     }
 
     let animationId;
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        connectParticles();
+    let lastTime = 0;
+    const fps = 30;
+    const fpsInterval = 1000 / fps;
+
+    function animateParticles(currentTime) {
         animationId = requestAnimationFrame(animateParticles);
+        
+        const elapsed = currentTime - lastTime;
+        if (elapsed < fpsInterval) return;
+        lastTime = currentTime - (elapsed % fpsInterval);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        connectParticles();
     }
 
     initParticles();
-    animateParticles();
+    animateParticles(0);
 
-    // Pause animation when tab is hidden
+    // Pause when tab is hidden
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
             cancelAnimationFrame(animationId);
         } else {
-            animateParticles();
+            animateParticles(0);
         }
     });
 }
@@ -140,7 +159,6 @@ if (menuToggle && navLinks) {
         menuToggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Close menu when clicking on a link
     navLinks.querySelectorAll('.nav-item').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
@@ -159,8 +177,8 @@ class TypeWriter {
         this.txt = '';
         this.wordIndex = 0;
         this.wait = parseInt(wait, 10);
-        this.type();
         this.isDeleting = false;
+        this.type();
     }
 
     type() {
@@ -436,7 +454,6 @@ window.openModal = function (id) {
         link.href = data.link;
         link.style.display = data.link === '#' ? 'none' : 'inline-flex';
         
-        // Syntax highlighting
         const codeBlock = document.getElementById("modalCodeBlock");
         let codeHtml = data.code
             .replace(/</g, "&lt;")
@@ -460,7 +477,6 @@ window.closeModal = function () {
     }
 };
 
-// Close modal on outside click and escape key
 window.onclick = function (e) {
     const modal = document.getElementById("projectModal");
     if (e.target === modal) {
