@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adejare Adelugba - Machine Learning Engineer & Data Scientist specializing in automation, data systems, and AI solutions.">
+    <meta name="description" content="Adejare Adelugba - Machine Learning Engineer & Data Scientist">
     <title>Adejare Adelugba | ML Engineer & Data Scientist</title>
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Critical inline styles to ensure visibility */
+        #neural-bg {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: -1 !important;
+            pointer-events: none !important;
+        }
+        .scroll-animate { opacity: 1 !important; transform: none !important; }
+        .cursor { animation: blink 1s infinite; color: #e2e8f0; }
+        @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+    </style>
 </head>
-
 <body>
-    <!-- Scroll Progress -->
     <div class="scroll-progress"></div>
-
-    <!-- Neural Background - MUST BE FIRST -->
     <canvas id="neural-bg"></canvas>
 
-
-    <!-- Navigation -->
     <nav>
         <div class="logo">ADEJARE.AI</div>
         <button class="mobile-menu-toggle" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
         <div class="nav-links">
             <a href="index.html" class="nav-item active">HOME</a>
@@ -34,119 +40,71 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Adejare Adelugba</h1>
-
             <h2 class="typing-text">
-                I am a 
-                <span class="txt-type"
-                      data-wait="2000"
-                      data-words='["Machine Learning Engineer", "Data Scientist", "Python Programmer", "Automation Specialist"]'>
-                </span>
+                I am a <span class="txt-type" data-wait="2000" data-words='["Machine Learning Engineer", "Data Scientist", "Python Programmer", "Automation Specialist"]'></span>
             </h2>
-
             <p>Computer Science Graduate | IT Support, Data Systems & Automation</p>
-
             <div class="hero-buttons">
-                <button class="btn btn-primary"
-                        onclick="document.querySelector('.stats-section').scrollIntoView({behavior: 'smooth'})">
-                        View Impact
-                </button>
-
-                <a href="https://github.com/adejare-dev" target="_blank" rel="noopener noreferrer" class="link-reset">
-                    <button class="btn btn-secondary">
-                        <i class="fab fa-github"></i> GitHub Profile
-                    </button>
+                <button class="btn btn-primary" onclick="document.querySelector('.stats-section').scrollIntoView({behavior: 'smooth'})">View Impact</button>
+                <a href="https://github.com/adejare-dev" target="_blank" rel="noopener noreferrer">
+                    <button class="btn btn-secondary"><i class="fab fa-github"></i> GitHub Profile</button>
                 </a>
             </div>
         </div>
-
         <div class="hero-image-container">
-            <img src="per work.jpg" alt="Adejare Adelugba - ML Engineer" class="profile-pic" loading="lazy">
+            <img src="per work.jpg" alt="Adejare Adelugba" class="profile-pic" onerror="this.style.display='none'">
         </div>
-
         <div class="scroll-down" onclick="document.querySelector('.stats-section').scrollIntoView({behavior: 'smooth'})">
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- Stats Section -->
     <section class="stats-section scroll-animate">
-        <div class="stat-item">
-            <h2 class="counter" data-target="3">0</h2>
-            <p>Years Experience</p>
-        </div>
-        <div class="stat-item">
-            <h2 class="counter" data-target="15">0</h2>
-            <p>Projects Completed</p>
-        </div>
-        <div class="stat-item">
-            <h2 class="counter" data-target="87">0</h2>
-            <p>% Accuracy (Thesis)</p>
-        </div>
-        <div class="stat-item">
-            <h2 class="counter" data-target="1000">0</h2>
-            <p>Data Points Scraped</p>
-        </div>
+        <div class="stat-item"><h2 class="counter" data-target="3">0</h2><p>Years Experience</p></div>
+        <div class="stat-item"><h2 class="counter" data-target="15">0</h2><p>Projects Completed</p></div>
+        <div class="stat-item"><h2 class="counter" data-target="87">0</h2><p>% Accuracy (Thesis)</p></div>
+        <div class="stat-item"><h2 class="counter" data-target="1000">0</h2><p>Data Points Scraped</p></div>
     </section>
 
-    <!-- Projects Grid -->
     <section class="grid-container">
         <div class="glow-card scroll-animate">
             <div class="card-content">
                 <h3>Multimodal Cancer Detection</h3>
-                <p><strong>B.Sc. Final Year Project:</strong>
-                   Early breast cancer detection using MedCLIP and TabNet with Early Fusion strategy.</p>
-                <button class="card-btn" onclick="openModal('cancer_fusion')">
-                    View Analysis
-                </button>
+                <p><strong>B.Sc. Final Year Project:</strong> Early breast cancer detection using MedCLIP and TabNet.</p>
+                <button class="card-btn" onclick="openModal('cancer_fusion')">View Analysis</button>
             </div>
         </div>
-
         <div class="glow-card scroll-animate">
             <div class="card-content">
                 <h3>Polling Unit Scraper</h3>
                 <p>Selenium-based automation collecting polling unit data across all Nigerian states.</p>
-                <button class="card-btn" onclick="openModal('polling')">
-                    View Details
-                </button>
+                <button class="card-btn" onclick="openModal('polling')">View Details</button>
             </div>
         </div>
-
         <div class="glow-card scroll-animate">
             <div class="card-content">
                 <h3>Workflow Automation</h3>
                 <p>Reduced manual reporting time via Python pipelines at TETFund.</p>
-                <button class="card-btn" onclick="openModal('automation')">
-                    View Details
-                </button>
+                <button class="card-btn" onclick="openModal('automation')">View Details</button>
             </div>
         </div>
-
         <div class="glow-card scroll-animate github-card">
             <div class="card-content center-content">
                 <h3>Explore More</h3>
-                <p>Check out my other repositories and experiments directly on GitHub.</p>
-                <a href="https://github.com/adelugbaadejare034-blip"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="link-reset">
-                    <button class="card-btn">
-                        Visit Profile →
-                    </button>
+                <p>Check out my other repositories on GitHub.</p>
+                <a href="https://github.com/adelugbaadejare034-blip" target="_blank" rel="noopener noreferrer">
+                    <button class="card-btn">Visit Profile →</button>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section class="skills-section scroll-animate">
         <h2 class="skills-title">Technical Arsenal</h2>
-
         <div class="skills-grid">
-
             <div class="skill-category">
                 <h4>Languages</h4>
                 <div class="skills-wrapper">
@@ -154,10 +112,8 @@
                     <span class="skill-tag dark">C#</span>
                     <span class="skill-tag dark">C++</span>
                     <span class="skill-tag dark">SQL</span>
-                    <span class="skill-tag dark">JavaScript</span>
                 </div>
             </div>
-
             <div class="skill-category">
                 <h4>AI & Machine Learning</h4>
                 <div class="skills-wrapper">
@@ -165,59 +121,369 @@
                     <span class="skill-tag accent">MedCLIP</span>
                     <span class="skill-tag accent">TabNet</span>
                     <span class="skill-tag dark">Scikit-Learn</span>
-                    <span class="skill-tag dark">Pandas</span>
-                    <span class="skill-tag dark">NumPy</span>
                 </div>
             </div>
-
             <div class="skill-category">
                 <h4>Tools & Platforms</h4>
                 <div class="skills-wrapper">
                     <span class="skill-tag dark">Selenium</span>
                     <span class="skill-tag dark">Git/GitHub</span>
-                    <span class="skill-tag dark">Jupyter</span>
                     <span class="skill-tag dark">PostgreSQL</span>
                     <span class="skill-tag dark">FastAPI</span>
-                    <span class="skill-tag dark">Docker</span>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
-            <div class="footer-social">
-                <a href="https://github.com/adejare-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/adejare-adelugba" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
-        </div>
+        <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
     </footer>
 
-    <!-- Modal -->
-    <div id="projectModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <!-- MODAL -->
+    <div id="projectModal" class="modal-overlay" style="display:none;">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()" aria-label="Close modal">&times;</button>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
             <h2 id="modalTitle">Project Title</h2>
             <div class="modal-body">
                 <div id="modalDescription">Details...</div>
-                <div class="code-block" id="modalCodeBlock"></div>
+                <div class="code-block"><pre id="modalCodeBlock"></pre></div>
                 <div class="modal-link-container">
-                    <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer">
-                        View Repository <i class="fas fa-external-link-alt"></i>
-                    </a>
+                    <a id="modalLink" href="#" target="_blank">View Repository <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ALL JAVASCRIPT INLINE - GUARANTEED TO WORK -->
+    <script>
+    // ==========================================
+    // PROJECT DATA - MUST BE DEFINED FIRST
+    // ==========================================
+    const projectData = {
+        'cancer_fusion': {
+            title: 'Multimodal Breast Cancer Detection',
+            desc: '<strong>Overview:</strong><br>Final year thesis combining ultrasound imaging with clinical data for early breast cancer detection.<br><br><strong>Results:</strong> 82.7% Accuracy, 87.1% ROC-AUC',
+            code: `class CancerDetectionModel(nn.Module):
+    def __init__(self):
+        self.medclip = MedCLIPModel()
+        self.tabnet = TabNetEncoder()
+        self.fusion = nn.Linear(576, 2)
+    
+    def forward(self, image, tabular):
+        img_emb = self.medclip(image)
+        tab_emb = self.tabnet(tabular)
+        combined = torch.cat([img_emb, tab_emb], dim=1)
+        return self.fusion(combined)`,
+            link: 'https://github.com/adelugbaadejare034-blip/Breast_cancer_detention_using_muilt_modal_analysis'
+        },
+        'polling': {
+            title: 'Nigeria Polling Unit Scraper',
+            desc: '<strong>Overview:</strong><br>Large-scale web scraping across all 36 Nigerian states.<br><br><strong>Impact:</strong> 99.9% accuracy, 90% time reduction',
+            code: `from selenium import webdriver
+import pandas as pd
+
+class PollingUnitScraper:
+    def scrape_state(self, state_code):
+        # Automated data extraction
+        pass`,
+            link: '#'
+        },
+        'automation': {
+            title: 'TETFund Workflow Automation',
+            desc: '<strong>Overview:</strong><br>Python automation for institutional report processing.',
+            code: `import pandas as pd
+
+class ReportAutomator:
+    def process_reports(self, input_dir):
+        # Automated processing
+        pass`,
+            link: '#'
+        }
+    };
+
+    // ==========================================
+    // MODAL FUNCTIONS - GLOBAL SCOPE
+    // ==========================================
+    function openModal(id) {
+        console.log('Opening modal:', id);
+        const data = projectData[id];
+        if (!data) {
+            console.error('No data found for:', id);
+            return;
+        }
+        
+        document.getElementById("modalTitle").innerText = data.title;
+        document.getElementById("modalDescription").innerHTML = data.desc;
+        
+        const link = document.getElementById("modalLink");
+        link.href = data.link;
+        if (data.link === '#') {
+            link.style.display = 'none';
+        } else {
+            link.style.display = 'inline-flex';
+        }
+        
+        document.getElementById("modalCodeBlock").innerText = data.code;
+        
+        const modal = document.getElementById("projectModal");
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        document.getElementById("projectModal").style.display = "none";
+        document.body.style.overflow = "";
+    }
+
+    // Close on outside click
+    window.onclick = function(e) {
+        const modal = document.getElementById("projectModal");
+        if (e.target === modal) {
+            closeModal();
+        }
+    };
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    // ==========================================
+    // NEURAL BACKGROUND ANIMATION
+    // ==========================================
+    (function initNeuralBackground() {
+        const canvas = document.getElementById("neural-bg");
+        if (!canvas) {
+            console.error('Canvas not found');
+            return;
+        }
+        
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+            console.error('Could not get 2d context');
+            return;
+        }
+        
+        let particles = [];
+        const particleCount = 80;
+        const connectionDistance = 120;
+        let mouse = { x: null, y: null };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener("resize", resize);
+        resize();
+
+        window.addEventListener("mousemove", function(e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener("mouseout", function() {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1.5;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 150) {
+                        const force = (150 - dist) / 150;
+                        this.x -= (dx / dist) * force * 2;
+                        this.y -= (dy / dist) * force * 2;
+                    }
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = "rgba(0, 229, 255, 0.6)";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(function(p) {
+                p.update();
+                p.draw();
+            });
+            
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (dist < connectionDistance) {
+                        const opacity = (1 - dist/connectionDistance) * 0.2;
+                        ctx.strokeStyle = "rgba(0, 229, 255, " + opacity + ")";
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+        console.log('Neural background initialized');
+    })();
+
+    // ==========================================
+    // TYPING EFFECT
+    // ==========================================
+    (function initTypeWriter() {
+        const el = document.querySelector(".txt-type");
+        if (!el) return;
+        
+        let words, wait;
+        try {
+            words = JSON.parse(el.getAttribute("data-words"));
+            wait = parseInt(el.getAttribute("data-wait")) || 2000;
+        } catch(e) {
+            console.error('Error parsing type data:', e);
+            return;
+        }
+        
+        let txt = '', wordIndex = 0, isDeleting = false;
+
+        function type() {
+            const current = wordIndex % words.length;
+            const full = words[current];
+            
+            if (isDeleting) {
+                txt = full.substring(0, txt.length - 1);
+            } else {
+                txt = full.substring(0, txt.length + 1);
+            }
+            
+            el.innerHTML = txt + '<span class="cursor">|</span>';
+            
+            let speed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && txt === full) {
+                speed = wait;
+                isDeleting = true;
+            } else if (isDeleting && txt === '') {
+                isDeleting = false;
+                wordIndex++;
+                speed = 500;
+            }
+            
+            setTimeout(type, speed);
+        }
+        
+        type();
+    })();
+
+    // ==========================================
+    // SCROLL PROGRESS
+    // ==========================================
+    (function initScrollProgress() {
+        const bar = document.querySelector('.scroll-progress');
+        if (!bar) return;
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            bar.style.width = scrollPercent + '%';
+        });
+    })();
+
+    // ==========================================
+    // MOBILE MENU
+    // ==========================================
+    (function initMobileMenu() {
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        if (!toggle || !nav) return;
+        
+        toggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            const spans = toggle.querySelectorAll('span');
+            
+            if (nav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            }
+        });
+    })();
+
+    // ==========================================
+    // COUNTERS
+    // ==========================================
+    (function initCounters() {
+        const counters = document.querySelectorAll(".counter");
+        if (counters.length === 0) return;
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute("data-target")) || 0;
+                    let current = 0;
+                    const increment = target / 50;
+                    
+                    const timer = setInterval(function() {
+                        current += increment;
+                        if (current >= target) {
+                            counter.innerText = target + (target >= 100 ? "+" : "");
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = Math.ceil(current);
+                        }
+                    }, 40);
+                    
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counters.forEach(function(c) { observer.observe(c); });
+    })();
+
+    console.log('All scripts loaded successfully');
+    </script>
 </body>
 </html>
-
