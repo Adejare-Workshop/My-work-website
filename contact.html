@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="scroll-progress"></div>
+    <div class="scroll-progress">
+    <canvas id="neural-bg"></canvas></div>
 
     <nav>
         <div class="logo">ADEJARE.AI</div>
@@ -44,7 +45,7 @@
                     <div>
                         <span class="label">Email</span>
                         <div class="value-box">
-                            <span id="emailText">adelugbaadejare03@gmail.com</span>
+                            <span id="emailText"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="87e6e3e2ebf2e0e5e6e6e3e2ede6f5e2b7b4c7e0eae6eeeba9e4e8ea">[email&#160;protected]</a></span>
                             <button class="copy-btn" onclick="copyToClipboard('emailText', this)" title="Copy Email" aria-label="Copy email address">
                                 <i class="fas fa-copy"></i>
                             </button>
@@ -85,7 +86,7 @@
                     <a href="https://linkedin.com/in/adejare-adelugba" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn Profile">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="mailto:adelugbaadejare03@gmail.com" class="social-btn" aria-label="Send Email">
+                    <a href="/cdn-cgi/l/email-protection#b8d9dcddd4cddfdad9d9dcddd2d9cadd888bf8dfd5d9d1d496dbd7d5" class="social-btn" aria-label="Send Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -128,7 +129,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>Contact: adelugbaadejare03@gmail.com | Abuja, Nigeria</p>
+            <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e0f0a0b021b090c0f0f0a0b040f1c0b5e5d2e09030f0702400d0103">[email&#160;protected]</a> | Abuja, Nigeria</p>
             <div class="footer-social">
                 <a href="https://github.com/adejare-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <i class="fab fa-github"></i>
@@ -137,6 +138,8 @@
         </div>
     </footer>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="script.js"></script>
     <script>
         // --- GOOGLE SHEETS CONNECTION ---
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzmSCWrVSrNNRVhTIIkfCzbWU52JWvMFRKdjRyUBY9a5XmlHhmKT60S8QDqR9GiNsdNrQ/exec';
@@ -216,16 +219,4 @@
             });
         }
 
-        // --- SCROLL ANIMATION ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.scroll-animate').forEach((el) => observer.observe(el));
-    </script>
-</body>
-</html>
+        // --- S
