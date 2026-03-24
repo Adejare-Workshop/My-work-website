@@ -181,108 +181,144 @@
        Apps Script e.parameter CANNOT read multipart/form-data (FormData).
        It ONLY reads application/x-www-form-urlencoded correctly.
     ════════════════════════════════════════════════════════════ */
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6uzapDJfLAsTm1slWJjl4zpXPUmvEnzqymvAaRmvW5I-3WKNQZzXV4j8jpHnxzo-m/exec';
+ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6uzapDJfLAsTm1slWJjl4zpXPUmvEnzqymvAaRmvW5I-3WKNQZzXV4j8jpHnxzo-m/exec';
 
-    const form      = document.getElementById('contactForm');
-    const statusDiv = document.getElementById('formStatus');
-    const submitBtn = document.getElementById('submitBtn');
+const form      = document.getElementById('contactForm');
+const statusDiv = document.getElementById('formStatus');
+const submitBtn = document.getElementById('submitBtn');
 
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-        // Read all four fields explicitly — no ambiguity
-        const name    = document.getElementById('name').value.trim();
-        const email   = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
+    // Read values
+    const name    = document.getElementById('name').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-        // Basic guard — all fields required
-        if (!name || !email || !subject || !message) {
-            showStatus('Please fill in all fields.', 'error');
-            return;
+    // Validation
+    if (!name || !email || !subject || !message) {
+        showStatus('Please fill in all fields.', 'error');
+        return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    hideStatus();
+
+    // IMPORTANT: Apps Script prefers URLSearchParams (what you're already doing)
+    const payload = new URLSearchParams();
+    payload.append('name', name);
+    payload.append('email', email);
+    payload.append('subject', subject);
+    payload.append('message', message);
+
+    try {
+        const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: payload.toString()
+        });
+
+        if (!response.ok) {
+            throw new Error('Server error: ' + response.status);
         }
 
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        hideStatus();
-
-        // Build URLSearchParams — this is what Apps Script e.parameter can read
-        const payload = new URLSearchParams();
-        payload.append('name',    name);
-        payload.append('email',   email);
-        payload.append('subject', subject);
-        payload.append('message', message);
+        // Apps Script sometimes returns text instead of JSON
+        let result;
+        const text = await response.text();
 
         try {
-            const response = await fetch(SCRIPT_URL, {
-                method:  'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body:    payload.toString()
-            });
-
-            if (!response.ok) throw new Error('Server returned ' + response.status);
-
-            const result = await response.json();
-
-            if (result.result === 'success') {
-                showStatus("Message sent! I'll get back to you soon.", 'success');
-                form.reset();
-            } else {
-                throw new Error(result.error || 'Unknown error');
-            }
-
-        } catch (err) {
-            console.error('Form submission error:', err);
-            showStatus('Error sending. Please email me directly at adelugbaadejare03@gmail.com', 'error');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span class="btn-text">Send Message</span> <i class="fas fa-paper-plane"></i>';
+            result = JSON.parse(text);
+        } catch {
+            throw new Error('Invalid response from server');
         }
-    });
 
-    function showStatus(msg, type) {
-        statusDiv.textContent = msg;
-        statusDiv.className   = 'form-status ' + type;
-        statusDiv.style.display = 'block';
-        if (type === 'success') {
-            setTimeout(hideStatus, 5000);
-        }
-    }
-
-    function hideStatus() {
-        statusDiv.style.display = 'none';
-        statusDiv.className = 'form-status';
-    }
-
-    /* ═══════════════════════════════════════════════════
-       COPY TO CLIPBOARD
-    ════════════════════════════════════════════════════ */
-    function copyText(text, btn) {
-        const write = () => {
-            const orig = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i>';
-            btn.classList.add('copied');
-            setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
-        };
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(text).then(write).catch(fallback);
+        if (result.result === 'success') {
+            showStatus("Message sent! I'll get back to you soon.", 'success');
+            form.reset();
         } else {
-            fallback();
+            throw new Error(result.error || 'Submission failed');
         }
-        function fallback() {
-            const ta = document.createElement('textarea');
-            ta.value = text;
-            ta.style.position = 'fixed';
-            ta.style.opacity  = '0';
-            document.body.appendChild(ta);
-            ta.focus(); ta.select();
-            try { document.execCommand('copy'); write(); } catch(_) {}
-            document.body.removeChild(ta);
-        }
+
+    } catch (err) {
+        console.error('Form submission error:', err);
+        showStatus('Error sending. Please email me directly at adelugbaadejare03@gmail.com', 'error');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="btn-text">Send Message</span> <i class="fas fa-paper-plane"></i>';
+    }
+});
+
+function showStatus(msg, type) {
+    statusDiv.textContent = msg;
+    statusDiv.className = 'form-status ' + type;
+    statusDiv.style.display = 'block';
+
+    if (type === 'success') {
+        setTimeout(hideStatus, 5000);
+    }
+}
+
+function hideStatus() {
+    statusDiv.style.display = 'none';
+    statusDiv.className = 'form-status';
+}
+
+/* ═══════════════════════════════════════════════════
+   COPY TO CLIPBOARD
+═══════════════════════════════════════════════════ */
+
+function copyText(text, btn) {
+    const showSuccess = () => {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('copied');
+
+        setTimeout(() => {
+            btn.innerHTML = original;
+            btn.classList.remove('copied');
+        }, 2000);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text)
+            .then(showSuccess)
+            .catch(fallback);
+    } else {
+        fallback();
     }
 
-    function copyEmail(btn) { copyText(document.getElementById('emailText').innerText, btn); }
-    function copyPhone(btn) { copyText(document.getElementById('phoneText').innerText, btn); }
+    function fallback() {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            document.execCommand('copy');
+            showSuccess();
+        } catch (err) {
+            console.error('Copy failed', err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+}
+
+function copyEmail(btn) {
+    copyText(document.getElementById('emailText').innerText, btn);
+}
+
+function copyPhone(btn) {
+    copyText(document.getElementById('phoneText').innerText, btn);
+}
     </script>
 </body>
 </html>
