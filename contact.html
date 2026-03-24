@@ -19,25 +19,25 @@
 
     <nav>
         <a href="index.html" class="logo">
-        <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="200" rx="32" fill="#1B3FA0"/>
-          <g fill="#FFFFFF">
-            <polygon points="12,168 42,168 100,30 74,30"/>
-            <polygon points="188,168 158,168 100,30 126,30"/>
-            <polygon points="74,34 86,34 72,6 64,14"/>
-            <polygon points="94,30 106,30 100,8"/>
-            <polygon points="126,34 114,34 128,6 136,14"/>
-            <polygon points="40,168 54,168 84,68 76,68"/>
-            <polygon points="160,168 146,168 116,68 124,68"/>
-            <rect x="52" y="106" width="96" height="14" rx="2"/>
-            <rect x="8"   y="158" width="42" height="12" rx="2"/>
-            <rect x="34"  y="154" width="28" height="12" rx="2"/>
-            <rect x="138" y="154" width="28" height="12" rx="2"/>
-            <rect x="150" y="158" width="42" height="12" rx="2"/>
-          </g>
-        </svg>
-        <span class="logo-text">ADEJARE.AI</span>
-      </a>
+            <svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" rx="32" fill="#1B3FA0"/>
+                <g fill="#FFFFFF">
+                    <polygon points="12,168 42,168 100,30 74,30"/>
+                    <polygon points="188,168 158,168 100,30 126,30"/>
+                    <polygon points="74,34 86,34 72,6 64,14"/>
+                    <polygon points="94,30 106,30 100,8"/>
+                    <polygon points="126,34 114,34 128,6 136,14"/>
+                    <polygon points="40,168 54,168 84,68 76,68"/>
+                    <polygon points="160,168 146,168 116,68 124,68"/>
+                    <rect x="52" y="106" width="96" height="14" rx="2"/>
+                    <rect x="8"   y="158" width="42" height="12" rx="2"/>
+                    <rect x="34"  y="154" width="28" height="12" rx="2"/>
+                    <rect x="138" y="154" width="28" height="12" rx="2"/>
+                    <rect x="150" y="158" width="42" height="12" rx="2"/>
+                </g>
+            </svg>
+            <span class="logo-text">ADEJARE.AI</span>
+        </a>
         <button class="mobile-menu-toggle" aria-label="Toggle navigation">
             <span></span><span></span><span></span>
         </button>
@@ -104,7 +104,7 @@
                 </div>
             </div>
 
-            <form class="contact-form" name="submit-to-google-sheet" id="contactForm">
+            <form class="contact-form" id="contactForm">
                 <h3>Send a Message</h3>
                 <div class="form-group">
                     <label for="name">Your Name</label>
@@ -144,10 +144,10 @@
 
     <script src="script.js"></script>
     <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbz9LTucvoEh6Frre4GvYboxvUS0n5EVTUOwLYLZfPwKS60MTLiSdCeu3wcpgQMkgMzOQw/exec';
-    const form = document.getElementById('contactForm');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzmSCWrVSrNNRVhTIIkfCzbWU52JWvMFRKdjRyUBY9a5XmlHhmKT60S8QDqR9GiNsdNrQ/exec';
+    const form      = document.getElementById('contactForm');
     const statusDiv = document.getElementById('formStatus');
-    const btn = document.getElementById('submitBtn');
+    const btn       = document.getElementById('submitBtn');
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -155,11 +155,33 @@
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         statusDiv.style.display = 'none';
         statusDiv.className = 'form-status';
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(r => { if (!r.ok) throw new Error('Network error'); return r; })
-            .then(() => { showStatus("Message sent! I'll get back to you soon.", 'success'); form.reset(); })
-            .catch(() => { showStatus('Error sending. Please email me directly.', 'error'); })
-            .finally(() => { btn.disabled = false; btn.innerHTML = '<span class="btn-text">Send Message</span> <i class="fas fa-paper-plane"></i>'; });
+
+        // URLSearchParams — Apps Script e.parameter only reads
+        // application/x-www-form-urlencoded, NOT multipart FormData
+        const params = new URLSearchParams({
+            name:    document.getElementById('name').value,
+            email:   document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        });
+
+        fetch(scriptURL, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body:    params.toString()
+        })
+        .then(r => { if (!r.ok) throw new Error('Network error'); return r; })
+        .then(() => {
+            showStatus("Message sent! I'll get back to you soon.", 'success');
+            form.reset();
+        })
+        .catch(() => {
+            showStatus('Error sending. Please email me directly.', 'error');
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = '<span class="btn-text">Send Message</span> <i class="fas fa-paper-plane"></i>';
+        });
     });
 
     function showStatus(msg, type) {
@@ -178,8 +200,11 @@
             setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
         }).catch(() => {
             const ta = document.createElement('textarea');
-            ta.value = text; document.body.appendChild(ta); ta.select();
-            document.execCommand('copy'); document.body.removeChild(ta);
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
         });
     }
     </script>
