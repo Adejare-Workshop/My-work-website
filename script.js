@@ -43,25 +43,19 @@
             this.opacity = Math.random() * 0.5 + 0.2;
             this.pulseSpeed = Math.random() * 0.02 + 0.01;
             this.pulseOffset = Math.random() * Math.PI * 2;
-            // Occasional "hot" nodes
             this.isHot = Math.random() < 0.08;
         }
 
         update(t) {
             this.x += this.speedX;
             this.y += this.speedY;
-
-            // Pulse size
             this.size = this.baseSize + Math.sin(t * this.pulseSpeed + this.pulseOffset) * 0.5;
-
-            // Wrap edges with a soft margin
             const margin = 10;
             if (this.x < -margin) this.x = canvas.width + margin;
             if (this.x > canvas.width + margin) this.x = -margin;
             if (this.y < -margin) this.y = canvas.height + margin;
             if (this.y > canvas.height + margin) this.y = -margin;
 
-            // Mouse repulsion (smooth)
             if (mouse.x !== null) {
                 const dx = mouse.x - this.x;
                 const dy = mouse.y - this.y;
@@ -76,10 +70,8 @@
         }
 
         draw() {
-            // Hot nodes glow brighter
             const alpha = this.isHot ? Math.min(this.opacity * 1.8, 0.9) : this.opacity;
             const color = this.isHot ? `rgba(0, 180, 255, ${alpha})` : `rgba(0, 229, 255, ${alpha})`;
-
             ctx.save();
             if (this.isHot) {
                 ctx.shadowBlur = 10;
@@ -102,18 +94,15 @@
                 if (distSq < connectionDistance * connectionDistance) {
                     const dist = Math.sqrt(distSq);
                     const t = 1 - dist / connectionDistance;
-                    // Hot connections glow brighter
                     const isHotLink = particles[a].isHot || particles[b].isHot;
                     const base = isHotLink ? 0.22 : 0.1;
                     const alpha = t * base;
-
                     const gradient = ctx.createLinearGradient(
                         particles[a].x, particles[a].y, particles[b].x, particles[b].y
                     );
                     gradient.addColorStop(0, `rgba(0, 229, 255, ${alpha})`);
                     gradient.addColorStop(0.5, `rgba(0, 100, 255, ${alpha * 0.6})`);
                     gradient.addColorStop(1, `rgba(0, 229, 255, ${alpha})`);
-
                     ctx.strokeStyle = gradient;
                     ctx.lineWidth = isHotLink ? 1.2 : 0.7;
                     ctx.beginPath();
@@ -228,7 +217,6 @@
     const counters = document.querySelectorAll(".counter");
     if (!counters.length) return;
 
-    // Set each counter's initial display to its start value (not raw "0")
     counters.forEach(c => {
         const suffix  = c.getAttribute("data-suffix") || "";
         const decimal = c.getAttribute("data-decimal") || "";
@@ -241,18 +229,16 @@
             const counter  = entry.target;
             const target   = parseInt(counter.getAttribute("data-target"));
             const suffix   = counter.getAttribute("data-suffix") || "";
-            const decimal  = counter.getAttribute("data-decimal") || "";   // e.g. ".1" or ".9"
+            const decimal  = counter.getAttribute("data-decimal") || "";
             const duration = 1800;
             const startTime = performance.now();
 
             function step(now) {
                 const elapsed  = now - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                // Ease out quart — smooth deceleration
                 const eased = 1 - Math.pow(1 - progress, 4);
                 const value = Math.floor(eased * target);
 
-                // On completion, snap to exact target with decimal
                 if (progress >= 1) {
                     counter.textContent = target + decimal + suffix;
                 } else {
@@ -288,10 +274,8 @@
 // 7. CONTACT PAGE — DATA STREAMS ANIMATION
 // =========================================
 (function initContactPageEffects() {
-    // Only run on contact page
     if (!document.querySelector('.contact-container')) return;
 
-    // Inject orb elements
     const orbsContainer = document.createElement('div');
     orbsContainer.className = 'contact-orbs';
     orbsContainer.innerHTML = `
@@ -301,7 +285,6 @@
     `;
     document.body.prepend(orbsContainer);
 
-    // Inject data streams
     const streamsContainer = document.createElement('div');
     streamsContainer.className = 'data-streams';
 
@@ -318,7 +301,6 @@
     }
     document.body.prepend(streamsContainer);
 
-    // Typed greeting on page load
     const header = document.querySelector('.page-header h1');
     if (header) {
         header.style.opacity = '0';
@@ -330,7 +312,6 @@
         }, 300);
     }
 
-    // Stagger contact panels
     const panels = document.querySelectorAll('.contact-info, .contact-form');
     panels.forEach((panel, i) => {
         panel.style.opacity = '0';
@@ -342,7 +323,6 @@
         }, 400 + i * 180);
     });
 
-    // Magnetic effect on social buttons
     document.querySelectorAll('.social-btn').forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
             const rect = btn.getBoundingClientRect();
@@ -358,7 +338,6 @@
         });
     });
 
-    // Input focus glow ripple
     document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
         input.addEventListener('focus', () => {
             const group = input.closest('.form-group');
@@ -420,7 +399,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         return pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ') + ' Z';
     }
 
-    // Defs: gradient fill
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `
         <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
@@ -434,7 +412,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     `;
     svg.appendChild(defs);
 
-    // Grid rings
     for (let lvl = 1; lvl <= levels; lvl++) {
         const r = (R / levels) * lvl;
         const pts = axes.map((_, i) => polar(startAngle + i * angleStep, r));
@@ -446,13 +423,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         svg.appendChild(path);
     }
 
-    // Axis spokes + labels
     axes.forEach((axis, i) => {
         const angle = startAngle + i * angleStep;
         const tip = polar(angle, R);
         const labelPt = polar(angle, R + 26);
 
-        // Spoke
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', cx); line.setAttribute('y1', cy);
         line.setAttribute('x2', tip.x.toFixed(2)); line.setAttribute('y2', tip.y.toFixed(2));
@@ -460,7 +435,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         line.setAttribute('stroke-width', '1');
         svg.appendChild(line);
 
-        // Label
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', labelPt.x.toFixed(2));
         text.setAttribute('y', labelPt.y.toFixed(2));
@@ -474,7 +448,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         svg.appendChild(text);
     });
 
-    // Data shape — animated in on scroll
     const dataPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     dataPath.setAttribute('fill', 'url(#radarFill)');
     dataPath.setAttribute('stroke', '#00e5ff');
@@ -484,7 +457,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     dataPath.style.transition = 'opacity 0.4s';
     svg.appendChild(dataPath);
 
-    // Dot nodes on vertices
     const dots = axes.map((axis, i) => {
         const angle = startAngle + i * angleStep;
         const pt = polar(angle, R * axis.value);
@@ -501,14 +473,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         return circle;
     });
 
-    // Center dot
     const centerDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     centerDot.setAttribute('cx', cx); centerDot.setAttribute('cy', cy);
     centerDot.setAttribute('r', '3');
     centerDot.setAttribute('fill', 'rgba(0,229,255,0.4)');
     svg.appendChild(centerDot);
 
-    // Animate in on scroll
     let drawn = false;
     function drawRadar(progress) {
         const pts = axes.map((axis, i) => {
@@ -535,7 +505,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         requestAnimationFrame(step);
     }
 
-    // Initial draw at 0
     drawRadar(0);
 
     const obs = new IntersectionObserver(entries => {
@@ -557,7 +526,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Stagger each bar slightly
                 const allFills = entry.target.querySelectorAll('.prof-fill');
                 allFills.forEach((fill, i) => {
                     setTimeout(() => fill.classList.add('animate'), i * 80);
