@@ -222,34 +222,48 @@
 })();
 
 // =========================================
-// 5. COUNTER ANIMATION
+// 5. COUNTER ANIMATION (decimal + suffix support)
 // =========================================
 (function initCounters() {
     const counters = document.querySelectorAll(".counter");
     if (!counters.length) return;
 
+    // Set each counter's initial display to its start value (not raw "0")
+    counters.forEach(c => {
+        const suffix  = c.getAttribute("data-suffix") || "";
+        const decimal = c.getAttribute("data-decimal") || "";
+        c.textContent = "0" + decimal + suffix;
+    });
+
     const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-            const counter = entry.target;
-            const target = parseInt(counter.getAttribute("data-target"));
-            let start = 0;
-            const duration = 1500;
+            const counter  = entry.target;
+            const target   = parseInt(counter.getAttribute("data-target"));
+            const suffix   = counter.getAttribute("data-suffix") || "";
+            const decimal  = counter.getAttribute("data-decimal") || "";   // e.g. ".1" or ".9"
+            const duration = 1800;
             const startTime = performance.now();
 
             function step(now) {
-                const elapsed = now - startTime;
+                const elapsed  = now - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                // Ease out cubic
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const value = Math.ceil(eased * target);
-                counter.textContent = value + (progress === 1 && target >= 100 ? '+' : '');
-                if (progress < 1) requestAnimationFrame(step);
+                // Ease out quart — smooth deceleration
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const value = Math.floor(eased * target);
+
+                // On completion, snap to exact target with decimal
+                if (progress >= 1) {
+                    counter.textContent = target + decimal + suffix;
+                } else {
+                    counter.textContent = value + suffix;
+                    requestAnimationFrame(step);
+                }
             }
             requestAnimationFrame(step);
             obs.unobserve(counter);
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
 
     counters.forEach(c => obs.observe(c));
 })();
@@ -371,3 +385,188 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// =========================================
+// 9. RADAR CHART
+// =========================================
+(function initRadarChart() {
+    const svg = document.getElementById('radarChart');
+    if (!svg) return;
+
+    const cx = 200, cy = 200, R = 150;
+    const levels = 5;
+
+    const axes = [
+        { label: 'ML / AI',       value: 0.88 },
+        { label: 'Data Eng.',     value: 0.82 },
+        { label: 'Automation',    value: 0.90 },
+        { label: 'SQL / DB',      value: 0.76 },
+        { label: 'Python',        value: 0.92 },
+        { label: 'Documentation', value: 0.78 },
+    ];
+
+    const n = axes.length;
+    const angleStep = (Math.PI * 2) / n;
+    const startAngle = -Math.PI / 2;
+
+    function polar(angle, r) {
+        return {
+            x: cx + r * Math.cos(angle),
+            y: cy + r * Math.sin(angle)
+        };
+    }
+
+    function pointsToPath(pts) {
+        return pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ') + ' Z';
+    }
+
+    // Defs: gradient fill
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+        <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#00e5ff" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#0066ff" stop-opacity="0.08"/>
+        </radialGradient>
+        <radialGradient id="radarFillHover" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#00e5ff" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#0066ff" stop-opacity="0.15"/>
+        </radialGradient>
+    `;
+    svg.appendChild(defs);
+
+    // Grid rings
+    for (let lvl = 1; lvl <= levels; lvl++) {
+        const r = (R / levels) * lvl;
+        const pts = axes.map((_, i) => polar(startAngle + i * angleStep, r));
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', pointsToPath(pts));
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', lvl === levels ? 'rgba(0,229,255,0.15)' : 'rgba(255,255,255,0.05)');
+        path.setAttribute('stroke-width', lvl === levels ? '1.2' : '0.8');
+        svg.appendChild(path);
+    }
+
+    // Axis spokes + labels
+    axes.forEach((axis, i) => {
+        const angle = startAngle + i * angleStep;
+        const tip = polar(angle, R);
+        const labelPt = polar(angle, R + 26);
+
+        // Spoke
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+        line.setAttribute('x2', tip.x.toFixed(2)); line.setAttribute('y2', tip.y.toFixed(2));
+        line.setAttribute('stroke', 'rgba(0,229,255,0.12)');
+        line.setAttribute('stroke-width', '1');
+        svg.appendChild(line);
+
+        // Label
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', labelPt.x.toFixed(2));
+        text.setAttribute('y', labelPt.y.toFixed(2));
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('dominant-baseline', 'middle');
+        text.setAttribute('fill', '#94a3b8');
+        text.setAttribute('font-size', '11');
+        text.setAttribute('font-family', 'Plus Jakarta Sans, sans-serif');
+        text.setAttribute('font-weight', '600');
+        text.textContent = axis.label;
+        svg.appendChild(text);
+    });
+
+    // Data shape — animated in on scroll
+    const dataPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    dataPath.setAttribute('fill', 'url(#radarFill)');
+    dataPath.setAttribute('stroke', '#00e5ff');
+    dataPath.setAttribute('stroke-width', '1.8');
+    dataPath.setAttribute('stroke-linejoin', 'round');
+    dataPath.setAttribute('opacity', '0');
+    dataPath.style.transition = 'opacity 0.4s';
+    svg.appendChild(dataPath);
+
+    // Dot nodes on vertices
+    const dots = axes.map((axis, i) => {
+        const angle = startAngle + i * angleStep;
+        const pt = polar(angle, R * axis.value);
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', pt.x.toFixed(2));
+        circle.setAttribute('cy', pt.y.toFixed(2));
+        circle.setAttribute('r', '4');
+        circle.setAttribute('fill', '#00e5ff');
+        circle.setAttribute('stroke', '#03080f');
+        circle.setAttribute('stroke-width', '2');
+        circle.setAttribute('opacity', '0');
+        circle.style.transition = `opacity 0.3s ${0.8 + i * 0.05}s`;
+        svg.appendChild(circle);
+        return circle;
+    });
+
+    // Center dot
+    const centerDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    centerDot.setAttribute('cx', cx); centerDot.setAttribute('cy', cy);
+    centerDot.setAttribute('r', '3');
+    centerDot.setAttribute('fill', 'rgba(0,229,255,0.4)');
+    svg.appendChild(centerDot);
+
+    // Animate in on scroll
+    let drawn = false;
+    function drawRadar(progress) {
+        const pts = axes.map((axis, i) => {
+            const angle = startAngle + i * angleStep;
+            return polar(angle, R * axis.value * progress);
+        });
+        dataPath.setAttribute('d', pointsToPath(pts));
+    }
+
+    function animateRadar() {
+        if (drawn) return;
+        drawn = true;
+        dataPath.setAttribute('opacity', '1');
+        dots.forEach(d => d.setAttribute('opacity', '1'));
+
+        const duration = 1200;
+        const start = performance.now();
+        function step(now) {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            drawRadar(eased);
+            if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    // Initial draw at 0
+    drawRadar(0);
+
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            animateRadar();
+            obs.disconnect();
+        }
+    }, { threshold: 0.3 });
+    obs.observe(svg);
+})();
+
+// =========================================
+// 10. SKILL PROFICIENCY BAR ANIMATION
+// =========================================
+(function initProficiencyBars() {
+    const fills = document.querySelectorAll('.prof-fill');
+    if (!fills.length) return;
+
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Stagger each bar slightly
+                const allFills = entry.target.querySelectorAll('.prof-fill');
+                allFills.forEach((fill, i) => {
+                    setTimeout(() => fill.classList.add('animate'), i * 80);
+                });
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    const panel = document.querySelector('.proficiency-panel');
+    if (panel) obs.observe(panel);
+})();
