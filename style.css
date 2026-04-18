@@ -2198,3 +2198,236 @@ body::after {
 @media (max-width: 500px) {
   .about-stats .stats-section-grid { grid-template-columns: repeat(2, 1fr); }
 }
+/* ============================================
+   v8 — FULL TRANSPARENCY + MOBILE/TABLET FIXES
+   ============================================ */
+
+/* ---- 1. Fully transparent glassmorphism ---- */
+:root {
+  --glass-bg:  rgba(0,0,0,0) !important;
+  --glass-bg2: rgba(0,229,255,.03) !important;
+}
+
+/* All glass surfaces: completely transparent background,
+   blur still active so the neural canvas shows through clean */
+.project-card,
+.skill-group,
+.sidebar-card,
+.radar-panel,
+.proficiency-panel,
+.liquid-glass,
+.gh-repo-card,
+.social-tile,
+.open-pill,
+.filter-tab,
+.stat-big {
+  background: transparent !important;
+}
+
+/* Hover - keep an ultra-subtle teal wash */
+.project-card:hover,
+.skill-group:hover,
+.sidebar-card:hover,
+.social-tile:hover,
+.filter-tab:hover,
+.stat-big:hover,
+.liquid-glass:hover { background: rgba(0,229,255,.04) !important; }
+
+/* Featured card keeps very faint deep-blue tint for hierarchy */
+.project-card.featured { background: rgba(0,20,50,.06) !important; }
+
+/* Structural bars / strips */
+.stats-bar         { background: transparent !important; }
+.stats-section     { background: transparent !important; }
+.ticker            { background: transparent !important; }
+.cta-strip         { background: transparent !important; }
+
+/* Nav — keep enough opacity so text stays readable on any scroll position */
+.site-nav { background: rgba(13,17,23,.18) !important; }
+
+/* Footer — slight ground */
+.site-footer { background: rgba(13,17,23,.12) !important; }
+
+/* Contact panels */
+.contact-sidebar,
+.contact-form-wrap { background: transparent !important; }
+
+/* Form inputs — keep legible background (full transparent = unreadable) */
+.form-group input,
+.form-group textarea {
+  background: rgba(13,17,23,.35) !important;
+}
+
+/* ---- 2. Skills viz — was missing a stacking breakpoint entirely ---- */
+@media (max-width: 960px) {
+  .skills-viz-body {
+    grid-template-columns: 1fr !important;
+  }
+  .radar-wrap { max-width: 280px; margin: 0 auto; }
+  .skills-viz-section { padding: 48px 6%; }
+}
+
+/* ---- 3. Tablet (640px–900px) ---- */
+@media (max-width: 768px) {
+  .section,
+  .section-sm    { padding: 40px 5%; }
+  .page-header   { padding: 36px 5% 28px; }
+  .about-hero    { padding: 44px 5% 32px; }
+  .about-body    { padding: 28px 5%; }
+
+  /* Centre the about photo when stacked */
+  .about-photo-wrap { margin: 0 auto 1rem; }
+
+  /* CTA strip: stack vertically on tablets */
+  .cta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 5%;
+  }
+
+  /* Proficiency label - tighten before phone breakpoint */
+  .prof-name { min-width: 130px; }
+}
+
+/* ---- 4. Mobile phones (≤ 480px) ---- */
+@media (max-width: 480px) {
+  /* NAV */
+  .site-nav { padding: 0 4%; }
+
+  /* HERO — centre everything on phones */
+  .hero { padding: 28px 4% 40px; }
+  .hero-content { text-align: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-desc    { margin-left: auto; margin-right: auto; max-width: 100%; }
+  .hero-stats   { justify-content: center; gap: 16px; }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions .btn { justify-content: center; width: 100%; }
+  .hero-photo-wrap   { margin: 0 auto; }
+
+  /* SECTIONS — tighter side padding on phones */
+  .section,
+  .section-sm           { padding: 28px 4%; }
+  .stats-section        { padding: 36px 4%; }
+  .skills-viz-section   { padding: 28px 4%; }
+  .page-header          { padding: 24px 4% 18px; }
+  .contact-page-header  { padding: 28px 4% 20px; }
+
+  /* PROFICIENCY — stack label above bar on narrow screens */
+  .prof-row   { flex-wrap: wrap; gap: 4px; }
+  .prof-name  { min-width: 100%; font-size: .75rem; margin-bottom: 2px; }
+
+  /* CODE SNIPPETS — shrink font so they don't scroll sideways */
+  .code-snippet { font-size: .7rem; padding: 10px 12px; }
+
+  /* ABOUT PAGE */
+  .about-hero {
+    padding: 28px 4%;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .about-photo-wrap { margin: 0 auto 0.5rem; }
+  .about-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .about-actions .btn {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+  }
+  .about-body { padding: 20px 4%; }
+
+  /* CTA STRIP — full-width stacked buttons */
+  .cta-strip { padding: 24px 4%; flex-direction: column; gap: 1rem; }
+  .cta-actions { display: flex; flex-direction: column; width: 100%; gap: 8px; }
+  .cta-actions .btn { width: 100%; justify-content: center; }
+
+  /* FOOTER — centre on phones */
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 4%;
+    gap: .75rem;
+  }
+
+  /* CONTACT */
+  .contact-sidebar   { padding: 24px 4% !important; }
+  .contact-form-wrap { padding: 24px 4% !important; }
+
+  /* SOCIAL GRID — 2-col keeps tiles big enough to tap */
+  .social-grid { grid-template-columns: 1fr 1fr; }
+
+  /* STATS SECTION — tighten stat cell padding */
+  .stat-big { padding: 24px 12px; }
+}
+
+/* ---- 5. Very small phones (≤ 360px) ---- */
+@media (max-width: 360px) {
+  .hero-actions .btn { padding: 10px 12px; font-size: .82rem; }
+  .stat-big-val      { font-size: clamp(2rem, 9vw, 3rem); }
+  .social-grid       { grid-template-columns: 1fr; }
+  .prof-name         { font-size: .7rem; }
+  .btn               { padding: 9px 14px; font-size: .82rem; }
+}
+
+/* ---- 6. Reduce motion — safe for low-powered devices ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ============================================
+   v8.1 — PUSH TRANSPARENCY EVEN FURTHER
+   ============================================ */
+
+/* Nav — just enough to prevent links disappearing mid-scroll */
+.site-nav { background: rgba(13,17,23,.08) !important; }
+
+/* Footer — fully gone */
+.site-footer { background: transparent !important; }
+
+/* Featured card — no tint at all */
+.project-card.featured { background: transparent !important; }
+
+/* Hover states — barely-there */
+.project-card:hover,
+.skill-group:hover,
+.sidebar-card:hover,
+.social-tile:hover,
+.filter-tab:hover,
+.stat-big:hover,
+.liquid-glass:hover { background: rgba(0,229,255,.02) !important; }
+
+/* Skill tags — transparent, border only */
+.skill-tag {
+  background: transparent !important;
+}
+
+/* Open pills + filter tabs — border only */
+.open-pill,
+.filter-tab { background: transparent !important; }
+
+/* Stats section pseudo radial gradients — reduce opacity */
+.stats-section::before { opacity: .3; }
+
+/* Mobile nav dropdown — less opaque */
+@media (max-width: 900px) {
+  .nav-links {
+    background: rgba(13,17,23,.65) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+  }
+}
+
+/* Form inputs — drop to 20% so canvas bleeds through slightly */
+.form-group input,
+.form-group textarea {
+  background: rgba(13,17,23,.20) !important;
+}
