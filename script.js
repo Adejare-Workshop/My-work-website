@@ -12,11 +12,11 @@
     var RAF_ID;
 
     /* --- Config --- */
-    var NODE_COUNT  = 90;    /* more nodes                        */
-    var MAX_DIST    = 200;   /* longer connection reach           */
-    var MOUSE_DIST  = 160;   /* mouse influence radius            */
-    var MOUSE_PUSH  = 90;    /* repulsion zone (push nodes away)  */
-    var BASE_SPEED  = 0.55;  /* node drift speed                  */
+    var NODE_COUNT  = 38;    /* fewer nodes                       */
+    var MAX_DIST    = 110;   /* shorter connection reach          */
+    var MOUSE_DIST  = 100;   /* mouse influence radius            */
+    var MOUSE_PUSH  = 55;    /* repulsion zone                    */
+    var BASE_SPEED  = 0.35;  /* slower drift                      */
 
     /* --- Canvas sizing --- */
     function resize() {
@@ -53,7 +53,7 @@
         y:  Math.random() * canvas.height,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        r:  Math.random() * 2.5 + 1.5,   /* radius 1.5 – 4px */
+        r:  Math.random() * 1.2 + 0.8,   /* radius 0.8 – 2px */
         baseR: 0
       });
       nodes[i].baseR = nodes[i].r;
@@ -87,7 +87,7 @@
         /* Glow radius when near mouse */
         var gd = Math.sqrt((n.x-mouse.x)*(n.x-mouse.x)+(n.y-mouse.y)*(n.y-mouse.y));
         n.r = gd < MOUSE_DIST
-          ? n.baseR + (MOUSE_DIST - gd) / MOUSE_DIST * 3.5
+          ? n.baseR + (MOUSE_DIST - gd) / MOUSE_DIST * 1.5
           : n.baseR;
       });
 
@@ -98,12 +98,12 @@
           var dy   = nodes[a].y - nodes[b].y;
           var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < MAX_DIST) {
-            var alpha = (1 - dist / MAX_DIST) * 0.55;
+            var alpha = (1 - dist / MAX_DIST) * 0.35;
             ctx.beginPath();
             ctx.moveTo(nodes[a].x, nodes[a].y);
             ctx.lineTo(nodes[b].x, nodes[b].y);
             ctx.strokeStyle = 'rgba(88,166,255,' + alpha + ')';
-            ctx.lineWidth = (1 - dist / MAX_DIST) * 1.4 + 0.3;
+            ctx.lineWidth = (1 - dist / MAX_DIST) * 0.9 + 0.2;
             ctx.stroke();
           }
         }
@@ -129,18 +129,18 @@
       nodes.forEach(function(n) {
         /* Glow pass */
         ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0,229,255,0.07)';
+        ctx.arc(n.x, n.y, n.r * 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,229,255,0.04)';
         ctx.fill();
         /* Core dot */
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0,229,255,0.90)';
+        ctx.fillStyle = 'rgba(0,229,255,0.70)';
         ctx.fill();
         /* White highlight */
         ctx.beginPath();
-        ctx.arc(n.x - n.r * 0.3, n.y - n.r * 0.3, n.r * 0.35, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,255,255,0.5)';
+        ctx.arc(n.x - n.r * 0.3, n.y - n.r * 0.3, n.r * 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.35)';
         ctx.fill();
       });
 
