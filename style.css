@@ -2526,3 +2526,6 @@ body::after {
 .liquid-glass::before { display: none !important; }
 
 /* Borders stay — they define layout without blocking the canvas */
+
+/* ---- v9.1 — neural canvas full brightness ---- */
+#neural-bg { opacity: 1 !important; }
