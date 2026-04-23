@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Projects and Experience — Adejare Adelugba. ML Engineer.">
-<meta property="og:title" content="Projects &amp; Experience | Adejare Adelugba">
+<meta name="description" content="Projects and experience — Adejare Adelugba, ML Engineer. Internships, research, and engineering work.">
+<meta property="og:title" content="Projects & Experience | Adejare Adelugba">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://my-work-website.pages.dev/projects.html">
 <meta property="og:image" content="profile.jpeg">
@@ -16,6 +16,7 @@
 <body>
 <canvas id="neural-bg"></canvas>
 <div class="scroll-progress"></div>
+
 <nav class="site-nav">
   <a href="index.html" class="nav-logo">
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +30,7 @@
         <rect x="34" y="57" width="32" height="6" rx="1"/>
       </g>
     </svg>
-    ADEJARE.AI
+    ADEJARE.ML
   </a>
   <div class="nav-links">
     <a href="index.html">Home</a>
@@ -42,18 +43,19 @@
 
 <div class="page">
 
-<div class="page-header">
-  <h1>Experience &amp; Projects</h1>
-  <p>Internships, research, and engineering work &mdash; with context on what was built and why. Click any card to expand details.</p>
-</div>
+  <!-- PAGE HEADER -->
+  <div class="projects-page-header">
+    <h1>Experience &amp; Projects</h1>
+    <p>Internships, research, and engineering work &mdash; with context on what was built and why. Click any card to expand details.</p>
+  </div>
 
-<!-- FEATURED RESEARCH -->
-<section id="research" class="section">
-  <p class="section-label">Academic Research</p>
-  <h2 class="section-title reveal">Featured Research</h2>
-  <div class="projects-grid">
-    <div class="project-card featured reveal" style="grid-column:1/-1;">
-      <details>
+  <!-- FEATURED RESEARCH -->
+  <section class="section" id="research">
+    <p class="section-label">Academic Research</p>
+    <h2 class="section-title reveal">Featured Research</h2>
+
+    <div class="project-card featured reveal" data-category="ml">
+      <details open>
         <summary>
           <div class="project-card-top">
             <div>
@@ -83,234 +85,345 @@
         self.medclip = MedCLIPModel()   # 512-dim
         self.tabnet  = TabNetEncoder()  # 64-dim
         self.head    = nn.Linear(576, 2)
-
     def forward(self, image, tabular):
-        img = self.medclip(image)       # [B, 512]
-        tab = self.tabnet(tabular)      # [B,  64]
+        img = self.medclip(image)   # [B, 512]
+        tab = self.tabnet(tabular)  # [B, 64]
         return self.head(torch.cat([img, tab], dim=1))</div>
           <div class="project-links">
-            <a href="https://github.com/adelugbaadejare034-blip/Breast_cancer_detention_using_muilt_modal_analysis" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> View Repository</a>
+            <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> View Repository</a>
           </div>
         </div>
       </details>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- EXPERIENCE TIMELINE -->
-<section class="section">
-  <p class="section-label">Work History</p>
-  <h2 class="section-title reveal">Professional Experience</h2>
-  <div class="timeline">
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <section class="section">
+    <p class="section-label">Work History</p>
+    <h2 class="section-title reveal">Professional Experience</h2>
 
-    <div class="tl-item reveal">
-      <div class="tl-left"><div class="tl-dot accent"></div><div class="tl-line"></div></div>
-      <div class="tl-content">
-        <div class="tl-meta">
-          <span class="tl-date"><i class="fas fa-calendar-alt"></i> Aug &ndash; Sep 2025</span>
-          <span class="tl-badge badge-work">Internship</span>
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-left"><div class="tl-dot accent"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <div class="tl-meta"><span class="tl-date">Aug &ndash; Sep 2025</span><span class="tl-badge badge-work">Internship</span></div>
+          <div class="tl-title">Data Engineering Intern</div>
+          <div class="tl-org">Kontemporary Konsulting Ltd. &middot; Abuja</div>
+          <p class="tl-desc">Built data collection infrastructure and ML prototypes for organizational research. Worked directly with real-world unstructured data.</p>
+          <ul style="margin:.6rem 0 .8rem;padding-left:1.2rem;font-size:.88rem;color:var(--text-muted,var(--muted));">
+            <li><strong>Polling Unit Scraper:</strong> Selenium system across all 36 Nigerian states &mdash; 90% manual entry reduction.</li>
+            <li><strong>Data Cleaning:</strong> Fixed missing values, inconsistent entries across all state portals.</li>
+            <li><strong>Brain Tumor Classification:</strong> Benchmarked ViT vs DINOv2 on MRI data with Grad-CAM visualization.</li>
+          </ul>
+          <div class="tl-tags"><span class="tl-tag">Selenium</span><span class="tl-tag">PostgreSQL</span><span class="tl-tag">Python</span><span class="tl-tag">Pandas</span></div>
         </div>
-        <div class="tl-title">Data Engineering Intern</div>
-        <div class="tl-org">Kontemporary Konsulting Ltd. &middot; Abuja</div>
-        <p class="tl-desc">Built data collection infrastructure and ML prototypes for organizational research. Worked directly with real-world unstructured data.</p>
-        <ul style="padding-left:1.2rem;margin-bottom:12px;">
-          <li class="tl-desc" style="margin-bottom:6px;"><strong>Polling Unit Scraper:</strong> Selenium system across all 36 Nigerian states &mdash; 85% manual entry reduction, 25% redundancy reduction.</li>
-          <li class="tl-desc" style="margin-bottom:6px;"><strong>Data Cleaning:</strong> Fixed missing values, inconsistent entries across all state portals.</li>
-          <li class="tl-desc"><strong>Brain Tumor Classification:</strong> Benchmarked ViT vs DINOv2 architectures on MRI data with Grad-CAM visualization.</li>
-        </ul>
-        <div class="tl-tags"><span class="tl-tag">Selenium</span><span class="tl-tag">PostgreSQL</span><span class="tl-tag">Python</span><span class="tl-tag">Pandas</span></div>
       </div>
-    </div>
 
-    <div class="tl-item reveal">
-      <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-      <div class="tl-content">
-        <div class="tl-meta">
-          <span class="tl-date"><i class="fas fa-calendar-alt"></i> Mar &ndash; Sep 2024</span>
-          <span class="tl-badge badge-work">Internship</span>
+      <div class="tl-item reveal">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <div class="tl-meta"><span class="tl-date">Mar &ndash; Sep 2024</span><span class="tl-badge badge-work">Internship</span></div>
+          <div class="tl-title">IT Summer Support Intern</div>
+          <div class="tl-org">Tertiary Education Trust Fund (TETFund) &middot; Abuja</div>
+          <p class="tl-desc">Identified data workflow bottlenecks and replaced manual operations with Python automation pipelines.</p>
+          <ul style="margin:.6rem 0 .8rem;padding-left:1.2rem;font-size:.88rem;color:var(--text-muted,var(--muted));">
+            <li><strong>Workflow Automation:</strong> Python scripts to parse, classify, and route institutional Excel reports.</li>
+            <li><strong>Data Accuracy:</strong> Identified and corrected inconsistencies across reporting records.</li>
+            <li><strong>Reporting:</strong> Structured multi-sheet Excel reports for internal team review.</li>
+          </ul>
+          <div class="tl-tags"><span class="tl-tag">Python</span><span class="tl-tag">Pandas</span><span class="tl-tag">openpyxl</span><span class="tl-tag">Excel</span></div>
         </div>
-        <div class="tl-title">IT Summer Support  Intern</div>
-        <div class="tl-org">Tertiary Education Trust Fund (TETFund) &middot; Abuja</div>
-        <p class="tl-desc">Identified data workflow bottlenecks and replaced manual operations with Python automation pipelines.</p>
-        <ul style="padding-left:1.2rem;margin-bottom:12px;">
-          <li class="tl-desc" style="margin-bottom:6px;"><strong>Workflow Automation:</strong> Python scripts to parse, classify, and route institutional Excel reports.</li>
-          <li class="tl-desc" style="margin-bottom:6px;"><strong>Data Accuracy:</strong> Identified and corrected inconsistencies across reporting records.</li>
-          <li class="tl-desc"><strong>Reporting:</strong> Structured multi-sheet Excel reports for internal team review.</li>
-        </ul>
-        <div class="tl-tags"><span class="tl-tag">Python</span><span class="tl-tag">Pandas</span><span class="tl-tag">openpyxl</span><span class="tl-tag">Excel</span></div>
       </div>
-    </div>
 
-    <div class="tl-item reveal">
-      <div class="tl-left"><div class="tl-dot"></div></div>
-      <div class="tl-content">
-        <div class="tl-meta">
-          <span class="tl-date"><i class="fas fa-calendar-alt"></i> 2021 &ndash; 2025</span>
-          <span class="tl-badge badge-edu">Education</span>
+      <div class="tl-item reveal">
+        <div class="tl-left"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <div class="tl-meta"><span class="tl-date">2021 &ndash; 2025</span><span class="tl-badge badge-edu">Education</span></div>
+          <div class="tl-title">B.Sc. Computer Science</div>
+          <div class="tl-org">Landmark University &middot; Omu-Aran</div>
+          <p class="tl-desc">Algorithms, data structures, machine learning, and software engineering. Final year thesis on multimodal AI for medical diagnostics.</p>
+          <div class="tl-tags"><span class="tl-tag">Computer Science</span><span class="tl-tag">Machine Learning</span><span class="tl-tag">Software Engineering</span></div>
         </div>
-        <div class="tl-title">B.Sc. Computer Science</div>
-        <div class="tl-org">Landmark University &middot; Omu-Aran</div>
-        <p class="tl-desc">Algorithms, data structures, machine learning, and software engineering. Final year thesis on multimodal AI for medical diagnostics.</p>
-        <div class="tl-tags"><span class="tl-tag">Computer Science</span><span class="tl-tag">Machine Learning</span><span class="tl-tag">Software Engineering</span></div>
       </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECT REPOSITORY -->
+  <section class="section">
+    <p class="section-label">Project Repository</p>
+    <h2 class="section-title reveal">All Projects</h2>
+
+    <!-- Filter buttons -->
+    <div class="project-filters reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ml">ML / AI</button>
+      <button class="filter-btn" data-filter="automation">Automation</button>
+      <button class="filter-btn" data-filter="web">Web</button>
     </div>
 
-  </div>
-</section>
+    <div class="projects-grid">
 
-<!-- ALL PROJECTS -->
-<section class="section">
-  <p class="section-label">Project Repository</p>
-  <h2 class="section-title reveal">All Projects</h2>
-  <div class="filter-tabs">
-    <button class="filter-tab active" data-filter="all">All</button>
-    <button class="filter-tab" data-filter="ml">ML / AI</button>
-    <button class="filter-tab" data-filter="automation">Automation</button>
-    <button class="filter-tab" data-filter="web">Web</button>
-  </div>
-  <div class="projects-grid">
+      <!-- Cancer Detection -->
+      <div class="project-card featured reveal" data-category="ml">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div>
+                <div class="featured-pill"><i class="fas fa-star"></i> Flagship</div>
+                <div class="project-title">Multimodal Cancer Detection</div>
+              </div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">PyTorch &bull; MedCLIP &bull; TabNet</div>
+            <div class="project-chips"><span class="chip chip-accent">87.1% ROC-AUC</span><span class="chip chip-accent">82.7% Accuracy</span></div>
+          </summary>
+          <div class="project-body">
+            <p>Final year thesis &mdash; <strong>87.1% ROC-AUC</strong> outperforming unimodal baselines.</p>
+            <div class="project-links">
+              <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a>
+            </div>
+          </div>
+        </details>
+      </div>
 
-    <div class="project-card featured reveal" data-category="ml">
-      <details>
-        <summary>
-          <div class="project-card-top"><div><div class="featured-pill"><i class="fas fa-star"></i> Flagship</div><div class="project-title">Multimodal Cancer Detection</div></div><i class="fas fa-chevron-right project-expand-icon"></i></div>
-          <div class="project-stack">PyTorch &bull; MedCLIP &bull; TabNet</div>
-          <div class="project-chips"><span class="chip chip-accent">87.1% ROC-AUC</span><span class="chip chip-accent">82.7% Accuracy</span></div>
-        </summary>
-        <div class="project-body">
-          <p>Final year thesis &mdash; <strong>87.1% ROC-AUC</strong> outperforming unimodal baselines.</p>
-          <div class="project-links"><a href="https://github.com/adelugbaadejare034-blip/Breast_cancer_detention_using_muilt_modal_analysis" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a></div>
-        </div>
-      </details>
+      <!-- Brain Tumor Classification -->
+      <div class="project-card reveal" data-category="ml">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div class="project-title">Brain Tumor Classification</div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">PyTorch &bull; ViT &bull; DINOv2 &bull; Grad-CAM</div>
+            <p class="project-desc">Architecture comparison on MRI data: Vision Transformer vs DINOv2 with Grad-CAM explainability. Built during Kontemporary internship.</p>
+            <div class="project-chips"><span class="chip">ViT vs DINOv2</span><span class="chip">Grad-CAM</span><span class="chip">MRI Data</span></div>
+          </summary>
+          <div class="project-body">
+            <ul>
+              <li>Benchmarked ViT and DINOv2 pretrained vision transformers on brain tumor MRI classification</li>
+              <li>Grad-CAM visualizations to identify which regions each model attends to</li>
+              <li>Comparison across accuracy, inference speed, and interpretability</li>
+            </ul>
+            <p style="font-size:.8rem;color:var(--muted);font-style:italic;">Repository is private &mdash; organizational work.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- HAR Transformer -->
+      <div class="project-card reveal" data-category="ml">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div class="project-title">Human Activity Recognition</div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">PyTorch &bull; Transformers &bull; HAR-70</div>
+            <p class="project-desc">Real-time activity recognition via Transformer on wearable sensor time-series. 12 activity classes.</p>
+            <div class="project-chips"><span class="chip">12 Activity Classes</span><span class="chip">70 Participants</span></div>
+          </summary>
+          <div class="project-body">
+            <ul>
+              <li>Multi-head self-attention for temporal dependencies in sensor data</li>
+              <li>HAR-70 dataset &mdash; 70 participants, 12 activity classes</li>
+              <li>6-axis IMU input (accelerometer + gyroscope)</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Adejare-ml/Real-Time-Human-Activity-Recognition-Using-Time-Series-Transformers-Wearable-Sensors-HAR-70-Dataset-" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Heart Disease -->
+      <div class="project-card reveal" data-category="ml">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div class="project-title">Heart Disease Prediction</div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">Scikit-Learn &bull; Random Forest &bull; XGBoost</div>
+            <p class="project-desc">Clinical decision support optimized for high Recall &mdash; minimizing false negatives in medical AI.</p>
+            <div class="project-chips"><span class="chip">High Recall</span><span class="chip">Class Imbalance</span></div>
+          </summary>
+          <div class="project-body">
+            <ul>
+              <li>Optimized for Recall over Accuracy in medical context</li>
+              <li>Multi-algorithm comparison with cross-validation</li>
+              <li>Class imbalance handled via class_weight and oversampling</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Adejare-ml/Heart_disease_risk_prediction_system" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Salary Prediction -->
+      <div class="project-card reveal" data-category="ml">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div class="project-title">Global Tech Salary Prediction</div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">Python &bull; Random Forest &bull; XGBoost</div>
+            <p class="project-desc">Regression model predicting tech salaries (USD) based on role, experience, company size, remote ratio.</p>
+            <div class="project-chips"><span class="chip">Regression</span><span class="chip">Feature Engineering</span></div>
+          </summary>
+          <div class="project-body">
+            <ul>
+              <li>Feature engineering for high-cardinality categoricals</li>
+              <li>RF vs XGBoost with cross-validation</li>
+              <li>Feature importance analysis</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Adejare-ml/Salary-Prediction-Using-Global-Tech-Job-Metadata-Regression-Model-" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Nigeria Scraper -->
+      <div class="project-card reveal" data-category="automation">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div class="project-title">Nigeria Polling Unit Scraper</div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">Python &bull; Selenium &bull; PostgreSQL</div>
+            <p class="project-desc">Electoral data collection across all 36 states. Multi-layer portal navigation.</p>
+            <div class="project-chips"><span class="chip chip-accent">36 States</span><span class="chip chip-accent">99.9% Accuracy</span></div>
+          </summary>
+          <div class="project-body">
+            <ul>
+              <li>Multi-layer dynamic portal navigation</li>
+              <li>Robust retry logic for network failures</li>
+              <li>PostgreSQL schema queryable by state and LGA</li>
+            </ul>
+            <p style="font-size:.8rem;color:var(--muted);font-style:italic;">Private repo &mdash; organizational data.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- TETFund -->
+      <div class="project-card reveal" data-category="automation">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div class="project-title">TETFund Workflow Automation</div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">Python &bull; Pandas &bull; openpyxl</div>
+            <p class="project-desc">Python pipeline replacing manual report processing &mdash; 90% time reduction.</p>
+            <div class="project-chips"><span class="chip chip-accent">90% Time Saved</span></div>
+          </summary>
+          <div class="project-body">
+            <ul>
+              <li>Parsing and classifying institutional Excel reports</li>
+              <li>Legacy migration to PostgreSQL with validation</li>
+              <li>Full documentation for team handover</li>
+            </ul>
+            <p style="font-size:.8rem;color:var(--muted);font-style:italic;">Private repo &mdash; institutional data.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Bunmi Website -->
+      <div class="project-card reveal" data-category="web">
+        <details>
+          <summary>
+            <div class="project-card-top">
+              <div class="project-title">Bunmi Adelugba &amp; Co. Website</div>
+              <i class="fas fa-chevron-right project-expand-icon"></i>
+            </div>
+            <div class="project-stack">HTML &bull; CSS &bull; JavaScript</div>
+            <p class="project-desc">Responsive corporate website for a Chartered Accounting firm. SEO-optimized.</p>
+            <div class="project-chips"><span class="chip">Responsive</span><span class="chip">SEO</span></div>
+          </summary>
+          <div class="project-body">
+            <ul>
+              <li>Fully responsive across all devices</li>
+              <li>Service pages: Audit, Taxation, Advisory</li>
+              <li>SEO-optimized meta tags and semantic HTML</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
     </div>
+  </section>
 
-    <div class="project-card reveal" data-category="ml">
-      <details>
-        <summary>
-          <div class="project-card-top"><div class="project-title">Human Activity Recognition</div><i class="fas fa-chevron-right project-expand-icon"></i></div>
-          <div class="project-stack">PyTorch &bull; Transformers &bull; HAR-70</div>
-          <p class="project-desc">Real-time activity recognition via Transformer on wearable sensor time-series. 12 activity classes.</p>
-        </summary>
-        <div class="project-body">
-          <ul><li>Multi-head self-attention for temporal dependencies</li><li>HAR-70 dataset &mdash; 70 participants, 12 classes</li><li>6-axis IMU input (accelerometer + gyroscope)</li></ul>
-          <div class="project-links"><a href="https://github.com/adelugbaadejare034-blip/Real-Time-Human-Activity-Recognition-Using-Time-Series-Transformers-Wearable-Sensors-HAR-70-Dataset-" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a></div>
-        </div>
-      </details>
+  <!-- GITHUB REPOS -->
+  <section class="section">
+    <p class="section-label">All Public Repositories</p>
+    <h2 class="section-title reveal">On GitHub</h2>
+    <div class="github-repos-wrap reveal" id="githubRepos">
+      <div class="repos-loading"><i class="fas fa-spinner fa-spin"></i> Loading repositories&hellip;</div>
     </div>
-
-    <div class="project-card reveal" data-category="ml">
-      <details>
-        <summary>
-          <div class="project-card-top"><div class="project-title">Heart Disease Prediction</div><i class="fas fa-chevron-right project-expand-icon"></i></div>
-          <div class="project-stack">Scikit-Learn &bull; Random Forest &bull; XGBoost</div>
-          <p class="project-desc">Clinical decision support optimized for high Recall &mdash; minimizing false negatives in medical AI.</p>
-        </summary>
-        <div class="project-body">
-          <ul><li>Optimized for Recall over Accuracy in medical context</li><li>Multi-algorithm comparison with cross-validation</li><li>Class imbalance handled via class_weight and oversampling</li></ul>
-          <div class="project-links"><a href="https://github.com/adelugbaadejare034-blip/Heart_disease_risk_prediction_system" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a></div>
-        </div>
-      </details>
+    <div style="text-align:center;margin-top:24px;" class="reveal">
+      <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <i class="fab fa-github"></i> View Full Profile on GitHub
+      </a>
     </div>
+  </section>
 
-    <div class="project-card reveal" data-category="ml">
-      <details>
-        <summary>
-          <div class="project-card-top"><div class="project-title">Global Tech Salary Prediction</div><i class="fas fa-chevron-right project-expand-icon"></i></div>
-          <div class="project-stack">Python &bull; Random Forest &bull; XGBoost</div>
-          <p class="project-desc">Regression model predicting tech salaries (USD) based on role, experience, company size, remote ratio.</p>
-        </summary>
-        <div class="project-body">
-          <ul><li>Feature engineering for high-cardinality categoricals</li><li>RF vs XGBoost with cross-validation</li><li>Feature importance analysis</li></ul>
-          <div class="project-links"><a href="https://github.com/adelugbaadejare034-blip/Salary-Prediction-Using-Global-Tech-Job-Metadata-Regression-Model-" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a></div>
-        </div>
-      </details>
-    </div>
-
-    <div class="project-card reveal" data-category="automation">
-      <details>
-        <summary>
-          <div class="project-card-top"><div class="project-title">Nigeria Polling Unit Scraper</div><i class="fas fa-chevron-right project-expand-icon"></i></div>
-          <div class="project-stack">Python &bull; Selenium &bull; PostgreSQL</div>
-          <p class="project-desc">Electoral data collection across all 36 states. Multi-layer portal navigation.</p>
-          <div class="project-chips"><span class="chip chip-accent">36 States</span><span class="chip chip-accent">99.9% Accuracy</span></div>
-        </summary>
-        <div class="project-body">
-          <ul><li>Multi-layer dynamic portal navigation</li><li>Robust retry logic for network failures</li><li>PostgreSQL schema queryable by state and LGA</li></ul>
-          <p style="font-size:.8rem;color:var(--muted);font-style:italic;">Private repo &mdash; organizational data.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="project-card reveal" data-category="automation">
-      <details>
-        <summary>
-          <div class="project-card-top"><div class="project-title">TETFund Workflow Automation</div><i class="fas fa-chevron-right project-expand-icon"></i></div>
-          <div class="project-stack">Python &bull; Pandas &bull; openpyxl</div>
-          <p class="project-desc">Python pipeline replacing manual report processing &mdash; 90% time reduction.</p>
-          <div class="project-chips"><span class="chip chip-accent">90% Time Saved</span></div>
-        </summary>
-        <div class="project-body">
-          <ul><li>Parsing and classifying institutional Excel reports</li><li>Legacy migration to PostgreSQL with validation</li><li>Full documentation for team handover</li></ul>
-          <p style="font-size:.8rem;color:var(--muted);font-style:italic;">Private repo &mdash; institutional data.</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="project-card reveal" data-category="web">
-      <details>
-        <summary>
-          <div class="project-card-top"><div class="project-title">Bunmi Adelugba &amp; Co. Website</div><i class="fas fa-chevron-right project-expand-icon"></i></div>
-          <div class="project-stack">HTML &bull; CSS &bull; JavaScript</div>
-          <p class="project-desc">Responsive corporate website for a Chartered Accounting firm. SEO-optimized.</p>
-        </summary>
-        <div class="project-body">
-          <ul><li>Fully responsive across all devices</li><li>Service pages: Audit, Taxation, Advisory</li><li>SEO-optimized meta tags and semantic HTML</li></ul>
-        </div>
-      </details>
-    </div>
-
-  </div>
-</section>
-
-<!-- GITHUB AUTO-FETCH SECTION -->
-<section class="gh-section">
-  <div class="gh-section-header">
+  <!-- CTA -->
+  <div class="cta-strip">
     <div>
-      <p class="section-label">Live from GitHub</p>
-      <h2 class="section-title reveal">All Public Repositories</h2>
-      <p style="font-size:.88rem;color:var(--muted);margin-top:4px;">Fetched automatically &mdash; always up to date.</p>
+      <h3>Let's work together</h3>
+      <p>ML Engineering &middot; Data Science &middot; Automation &middot; Remote available</p>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-      <span class="gh-live-badge">Live &bull; Auto-updated</span>
-      <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> View Profile</a>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-primary"><i class="fas fa-envelope"></i> Get In Touch</a>
+      <a href="Adejare_Adelugba_Machine%20learning_engineer.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
     </div>
   </div>
-  <p id="gh-status" style="color:var(--muted);font-size:.88rem;padding:8px 0;">
-    <i class="fas fa-circle-notch fa-spin" style="color:var(--accent);margin-right:8px;"></i>Loading repositories from GitHub&hellip;
-  </p>
-  <div id="gh-repos-grid"></div>
-</section>
 
-<div class="cta-strip">
-  <div>
-    <h3>Let's work together</h3>
-    <p>ML Engineering &middot; Data Science &middot; Automation &middot; Remote available</p>
-  </div>
-  <div class="cta-actions">
-    <a href="contact.html" class="btn btn-primary"><i class="fas fa-envelope"></i> Get In Touch</a>
-    <a href="Adejare_Adelugba_Machine learning_engineer.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
-  </div>
+  <footer class="site-footer">
+    <span class="footer-text">adelugbaadejare03@gmail.com &nbsp;&middot;&nbsp; Abuja, Nigeria</span>
+    <div class="footer-links">
+      <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/adejare-adelugba" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </footer>
+
 </div>
 
-<footer class="site-footer">
-  <span class="footer-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b6d7d2d3dac3d1d4d7d7d2d3dcd7c4d38685f6d1dbd7dfda98d5d9db">[email&#160;protected]</a> &nbsp;&middot;&nbsp; Abuja, Nigeria</span>
-  <div class="footer-links">
-    <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/adejare-adelugba" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-  </div>
-</footer>
-
-</div>
 <script data-cfasync="false" src="script.js"></script>
+
+<!-- GitHub repos fetch — uses correct username -->
+<script>
+(function () {
+  const container = document.getElementById('githubRepos');
+  if (!container) return;
+  fetch('https://api.github.com/users/Adejare-ml/repos?sort=updated&per_page=12')
+    .then(r => r.json())
+    .then(repos => {
+      if (!Array.isArray(repos) || repos.length === 0) {
+        container.innerHTML = '<p style="color:var(--muted);font-size:.88rem;">Could not load repositories. <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View on GitHub &rarr;</a></p>';
+        return;
+      }
+      const cards = repos.map(r => `
+        <a class="repo-card" href="${r.html_url}" target="_blank" rel="noopener noreferrer">
+          <div class="repo-card-name"><i class="fab fa-github"></i> ${r.name}</div>
+          <div class="repo-card-desc">${r.description || 'No description provided.'}</div>
+          <div class="repo-card-meta">
+            ${r.language ? `<span><i class="fas fa-circle" style="color:var(--accent);font-size:.55rem;"></i> ${r.language}</span>` : ''}
+            <span><i class="fas fa-star"></i> ${r.stargazers_count}</span>
+            <span><i class="fas fa-code-branch"></i> ${r.forks_count}</span>
+          </div>
+        </a>`).join('');
+      container.innerHTML = `<div class="repo-grid">${cards}</div>`;
+    })
+    .catch(() => {
+      container.innerHTML = '<p style="color:var(--muted);font-size:.88rem;">Could not load repositories. <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View on GitHub &rarr;</a></p>';
+    });
+})();
+</script>
+
 </body>
 </html>
