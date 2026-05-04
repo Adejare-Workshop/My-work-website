@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Adejare Adelugba — ML Engineer open to ML engineering, data science, and automation opportunities.">
+<meta property="og:title" content="Contact | Adejare Adelugba">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://my-work-website.pages.dev/contact.html">
+<meta property="og:image" content="profile.jpeg">
+<title>Contact | Adejare Adelugba</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<canvas id="neural-bg"></canvas>
+<div class="scroll-progress"></div>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" rx="16" fill="#58a6ff"/>
+      <g fill="white">
+        <polygon points="10,85 17,85 50,14 43,14"/>
+        <polygon points="90,85 83,85 50,14 57,14"/>
+        <polygon points="46,11 54,11 50,2"/>
+        <polygon points="28,82 34,82 50,36 46,36"/>
+        <polygon points="72,82 66,82 50,36 54,36"/>
+        <rect x="34" y="57" width="32" height="6" rx="1"/>
+      </g>
+    </svg>
+    ADEJARE.ML
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page">
+
+  <div class="contact-page-header">
+    <p class="section-label">Get In Touch</p>
+    <h1>Let's Build <span style="color:var(--accent);">Something</span></h1>
+    <p>Open to ML engineering, data science, and automation projects. Full-time role, freelance contract, or research collaboration &mdash; I'd love to hear from you.</p>
+  </div>
+
+  <div class="contact-layout">
+
+    <!-- LEFT: INFO SIDEBAR -->
+    <div class="contact-sidebar">
+
+      <div class="contact-response reveal">
+        Typically responds within <strong>&nbsp;24 hours</strong>
+      </div>
+
+      <p class="section-label" style="margin-bottom:12px;">Currently open to</p>
+      <div class="open-to-grid reveal">
+        <div class="open-pill"><i class="fas fa-robot"></i> ML Engineering</div>
+        <div class="open-pill"><i class="fas fa-chart-line"></i> Data Science</div>
+        <div class="open-pill"><i class="fas fa-spider"></i> Automation</div>
+        <div class="open-pill"><i class="fas fa-laptop-house"></i> Remote Roles</div>
+        <div class="open-pill"><i class="fas fa-briefcase"></i> Freelance</div>
+        <div class="open-pill"><i class="fas fa-flask"></i> Research</div>
+      </div>
+
+      <p class="section-label" style="margin:24px 0 14px;">Contact Details</p>
+
+      <div class="contact-info-row reveal">
+        <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+        <div style="flex:1;">
+          <div class="ci-label">Email</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="ci-value" id="emailText">adelugbaadejare03@gmail.com</span>
+            <button class="ci-copy" data-copy="emailText" title="Copy email" aria-label="Copy email"><i class="fas fa-copy"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-info-row reveal">
+        <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <div class="ci-label">Location</div>
+          <div class="ci-value" style="font-family:var(--ff-sans);">Abuja, Nigeria &middot; Remote Available</div>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin:24px 0 12px;">Find Me Online</p>
+      <div class="social-grid reveal">
+        <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" class="social-tile">
+          <i class="fab fa-github"></i>
+          <span class="social-tile-name">GitHub</span>
+          <span class="social-tile-handle">Adejare-ml</span>
+        </a>
+        <a href="https://www.linkedin.com/in/danieljare/" target="_blank" rel="noopener noreferrer" class="social-tile">
+          <i class="fab fa-linkedin-in"></i>
+          <span class="social-tile-name">LinkedIn</span>
+          <span class="social-tile-handle">danieljare</span>
+        </a>
+        <a href="mailto:adelugbaadejare03@gmail.com" class="social-tile">
+          <i class="fas fa-envelope"></i>
+          <span class="social-tile-name">Email</span>
+          <span class="social-tile-handle">Direct message</span>
+        </a>
+        <a href="Adejare_Adelugba_Machine%20learning_engineer.pdf" download class="social-tile">
+          <i class="fas fa-file-pdf"></i>
+          <span class="social-tile-name">Resume / CV</span>
+          <span class="social-tile-handle">Download PDF</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="contact-form-wrap">
+      <h2 class="form-title reveal">Send a Message</h2>
+      <p class="form-sub reveal">Fill in the details below and I'll get back to you promptly.</p>
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group reveal">
+            <label for="senderName">Your Name</label>
+            <input type="text" id="senderName" name="name" placeholder="John Doe" required autocomplete="name">
+          </div>
+          <div class="form-group reveal">
+            <label for="senderEmail">Email Address</label>
+            <input type="email" id="senderEmail" name="email" placeholder="john@example.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group reveal">
+          <label for="senderSubject">Subject</label>
+          <input type="text" id="senderSubject" name="subject" placeholder="e.g. ML Project Collaboration" required>
+        </div>
+        <div class="form-group reveal">
+          <div class="form-label-row">
+            <label for="senderMessage">Message</label>
+            <span class="char-counter" id="charCount">0 / 500</span>
+          </div>
+          <textarea id="senderMessage" name="message" rows="7"
+            placeholder="Tell me about your project, role, or what you'd like to collaborate on..."
+            required maxlength="500"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary submit-btn reveal" id="submitBtn">
+          Send Message <i class="fas fa-paper-plane"></i>
+        </button>
+        <div id="formStatus" class="form-status"></div>
+        <p class="form-note reveal"><i class="fas fa-lock"></i> Your details are only used to respond to your message.</p>
+      </form>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-text">adelugbaadejare03@gmail.com &nbsp;&middot;&nbsp; Abuja, Nigeria</span>
+    <div class="footer-links">
+      <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/danieljare/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </footer>
+</div>
+
+<script data-cfasync="false" src="script.js"></script>
+</body>
+</html>
