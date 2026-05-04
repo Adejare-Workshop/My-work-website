@@ -367,22 +367,6 @@
         <details>
           <summary>
             <div class="project-card-top">
-<<<<<<< HEAD
-              <div class="project-title">TETFund Workflow Automation</div>
-              <i class="fas fa-chevron-right project-expand-icon"></i>
-            </div>
-            <div class="project-stack">Python &bull; Pandas &bull; openpyxl</div>
-            <p class="project-desc">Python pipeline replacing manual report processing &mdash; 90% time reduction.</p>
-            <div class="project-chips"><span class="chip chip-accent">90% Time Saved</span></div>
-          </summary>
-          <div class="project-body">
-            <ul>
-              <li>Parsing and classifying institutional Excel reports</li>
-              <li>Legacy migration to PostgreSQL with validation</li>
-              <li>Full documentation for team handover</li>
-            </ul>
-            <p style="font-size:.8rem;color:var(--muted);font-style:italic;">Private repo &mdash; institutional data.</p>
-=======
               <div class="project-title">TETFund Report Automation</div>
               <i class="fas fa-chevron-right project-expand-icon"></i>
             </div>
@@ -436,7 +420,6 @@ Output: structured DB + full audit log</div>
             <div class="project-links">
               <a href="https://github.com/Adejare-ml/Credit-Card-Fraud-Detection-System" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 16px;"><i class="fab fa-github"></i> Repository</a>
             </div>
->>>>>>> master
           </div>
         </details>
       </div>
@@ -446,20 +429,6 @@ Output: structured DB + full audit log</div>
         <details>
           <summary>
             <div class="project-card-top">
-<<<<<<< HEAD
-              <div class="project-title">Bunmi Adelugba &amp; Co. Website</div>
-              <i class="fas fa-chevron-right project-expand-icon"></i>
-            </div>
-            <div class="project-stack">HTML &bull; CSS &bull; JavaScript</div>
-            <p class="project-desc">Responsive corporate website for a Chartered Accounting firm. SEO-optimized.</p>
-            <div class="project-chips"><span class="chip">Responsive</span><span class="chip">SEO</span></div>
-          </summary>
-          <div class="project-body">
-            <ul>
-              <li>Fully responsive across all devices</li>
-              <li>Service pages: Audit, Taxation, Advisory</li>
-              <li>SEO-optimized meta tags and semantic HTML</li>
-=======
               <div>
                 <span class="tl-badge badge-work" style="margin-bottom:5px;display:inline-block;font-size:.7rem;">Other Work</span>
                 <div class="project-title" style="font-size:.95rem;">Bunmi Adelugba &amp; Co. — Corporate Website</div>
@@ -474,7 +443,6 @@ Output: structured DB + full audit log</div>
             <ul>
               <li>Service pages: Audit, Taxation, Advisory. Fully responsive.</li>
               <li>Debugged Google Apps Script form &mdash; fixed <code>multipart/form-data</code> vs <code>application/x-www-form-urlencoded</code> mismatch causing silent POST failures.</li>
->>>>>>> master
             </ul>
           </div>
         </details>
@@ -487,12 +455,6 @@ Output: structured DB + full audit log</div>
   <section class="section">
     <p class="section-label">All Public Repositories</p>
     <h2 class="section-title reveal">On GitHub</h2>
-<<<<<<< HEAD
-    <div class="github-repos-wrap reveal" id="githubRepos">
-      <div class="repos-loading"><i class="fas fa-spinner fa-spin"></i> Loading repositories&hellip;</div>
-    </div>
-    <div style="text-align:center;margin-top:24px;" class="reveal">
-=======
     <p class="section-sub reveal">Public work &mdash; open source and available to review directly.</p>
     <div class="repo-grid reveal">
       <a class="repo-card" href="https://github.com/Adejare-ml/Breast_cancer_detention_using_muilt_modal_analysis" target="_blank" rel="noopener noreferrer">
@@ -522,7 +484,6 @@ Output: structured DB + full audit log</div>
       </a>
     </div>
     <div style="text-align:center;margin-top:28px;" class="reveal">
->>>>>>> master
       <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
         <i class="fab fa-github"></i> View Full Profile on GitHub
       </a>
@@ -532,13 +493,8 @@ Output: structured DB + full audit log</div>
   <!-- CTA -->
   <div class="cta-strip">
     <div>
-<<<<<<< HEAD
-      <h3>Let's work together</h3>
-      <p>ML Engineering &middot; Data Science &middot; Automation &middot; Remote available</p>
-=======
       <h3>Available for ML engineering and data science roles</h3>
       <p>Remote &middot; Abuja, Nigeria &middot; Open to relocation</p>
->>>>>>> master
     </div>
     <div class="cta-actions">
       <a href="contact.html" class="btn btn-primary"><i class="fas fa-envelope"></i> Get In Touch</a>
@@ -555,44 +511,6 @@ Output: structured DB + full audit log</div>
   </footer>
 
 </div>
-<<<<<<< HEAD
-
-<script data-cfasync="false" src="script.js"></script>
-
-<!-- GitHub repos fetch — uses correct username -->
-<script>
-(function () {
-  const container = document.getElementById('githubRepos');
-  if (!container) return;
-  fetch('https://api.github.com/users/Adejare-ml/repos?sort=updated&per_page=12')
-    .then(r => r.json())
-    .then(repos => {
-      if (!Array.isArray(repos) || repos.length === 0) {
-        container.innerHTML = '<p style="color:var(--muted);font-size:.88rem;">Could not load repositories. <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View on GitHub &rarr;</a></p>';
-        return;
-      }
-      const cards = repos.map(r => `
-        <a class="repo-card" href="${r.html_url}" target="_blank" rel="noopener noreferrer">
-          <div class="repo-card-name"><i class="fab fa-github"></i> ${r.name}</div>
-          <div class="repo-card-desc">${r.description || 'No description provided.'}</div>
-          <div class="repo-card-meta">
-            ${r.language ? `<span><i class="fas fa-circle" style="color:var(--accent);font-size:.55rem;"></i> ${r.language}</span>` : ''}
-            <span><i class="fas fa-star"></i> ${r.stargazers_count}</span>
-            <span><i class="fas fa-code-branch"></i> ${r.forks_count}</span>
-          </div>
-        </a>`).join('');
-      container.innerHTML = `<div class="repo-grid">${cards}</div>`;
-    })
-    .catch(() => {
-      container.innerHTML = '<p style="color:var(--muted);font-size:.88rem;">Could not load repositories. <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">View on GitHub &rarr;</a></p>';
-    });
-})();
-</script>
-
-</body>
-</html>
-=======
 <script data-cfasync="false" src="script.js"></script>
 </body>
 </html>
->>>>>>> master
