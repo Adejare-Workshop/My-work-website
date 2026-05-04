@@ -197,24 +197,8 @@
     });
   }
 
-  /* ====== TYPING EFFECT ====== */
-  var typedEl = document.querySelector('.typed-word');
-  if (typedEl) {
-    var words = ['ML pipelines', 'data infrastructure', 'automation systems', 'AI solutions'];
-    var wi = 0, ci = 0, deleting = false;
-    function tick() {
-      var word = words[wi % words.length];
-      if (!deleting) {
-        typedEl.textContent = word.slice(0, ci + 1); ci++;
-        if (ci === word.length) { deleting = true; setTimeout(tick, 1800); return; }
-      } else {
-        typedEl.textContent = word.slice(0, ci - 1); ci--;
-        if (ci === 0) { deleting = false; wi++; }
-      }
-      setTimeout(tick, deleting ? 40 : 85);
-    }
-    tick();
-  }
+  /* ====== TYPING EFFECT — disabled, hero uses static headline ====== */
+  /* Removed: hero-subtitle .typed-word element no longer in HTML */
 
   /* ====== ANIMATED COUNTERS ====== */
   var counters = document.querySelectorAll('.counter');
@@ -239,18 +223,7 @@
     counters.forEach(function(c) { cObs.observe(c); });
   }
 
-  /* ====== PROFICIENCY BARS ====== */
-  var profPanel = document.querySelector('.proficiency-panel');
-  if (profPanel) {
-    var pObs = new IntersectionObserver(function(entries) {
-      if (!entries[0].isIntersecting) return;
-      profPanel.querySelectorAll('.prof-fill').forEach(function(fill, i) {
-        setTimeout(function() { fill.classList.add('animate'); }, i * 90);
-      });
-      pObs.disconnect();
-    }, { threshold: 0.2 });
-    pObs.observe(profPanel);
-  }
+  /* ====== PROFICIENCY BARS — removed from HTML, observer disabled ====== */
 
   /* ====== RADAR CHART ====== */
   var radarSvg = document.getElementById('radarChart');
@@ -342,8 +315,8 @@
   var ghGrid = document.getElementById('gh-repos-grid');
   if (ghGrid) {
     var ghStatus = document.getElementById('gh-status');
-    /* Try both accounts in sequence */
-    var ghAccounts = ['adejare-dev', 'adelugbaadejare034-blip'];
+    /* Single canonical username — Adejare-ml */
+    var ghAccounts = ['Adejare-ml'];
     var allRepos = [];
     var fetched = 0;
 
@@ -363,7 +336,7 @@
         repos = repos.filter(function(r) { return !r.fork; });
       }
       if (!repos.length) {
-        ghGrid.innerHTML = '<p style="color:var(--muted);padding:16px 0;">No matching repositories found. <a href="https://github.com/adejare-dev" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">View on GitHub &rarr;</a></p>';
+        ghGrid.innerHTML = '<p style="color:var(--muted);padding:16px 0;">No matching repositories found. <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">View on GitHub &rarr;</a></p>';
         return;
       }
       repos.forEach(function(repo) {
@@ -405,7 +378,7 @@
 
     Promise.all(ghAccounts.map(fetchAccount)).then(function() {
       if (!allRepos.length) {
-        if (ghStatus) ghStatus.innerHTML = 'Could not load repositories. <a href="https://github.com/adejare-dev" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">View on GitHub &rarr;</a>';
+        if (ghStatus) ghStatus.innerHTML = 'Could not load repositories. <a href="https://github.com/Adejare-ml" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">View on GitHub &rarr;</a>';
         return;
       }
       renderRepos();

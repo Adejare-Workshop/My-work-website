@@ -50,9 +50,12 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-eyebrow">Open to opportunities &middot; Abuja, Nigeria</div>
+      <div class="hero-eyebrow">
+        <span class="hero-status-dot"></span>
+        Open to opportunities &middot; Abuja, Nigeria
+      </div>
       <h1>Adejare Adelugba</h1>
-      <p class="hero-subtitle">I build <span class="typed-word">ML pipelines</span><span class="cursor-blink"></span></p>
+      <p class="hero-role">ML Engineer &amp; Data Scientist</p>
       <p class="hero-desc">
         I build <strong>ML systems that work on real, messy data</strong> &mdash; not clean benchmarks.
         Most recently: <strong>87.1% ROC-AUC</strong> on multimodal cancer detection, and
@@ -98,7 +101,8 @@
   <!-- STATS -->
   <section class="stats-section">
     <p class="stats-section-label">By the Numbers</p>
-    <h2 class="stats-section-title reveal">Results that speak for themselves</h2>
+
+    <h2 class="stats-section-title reveal">Measured outcomes from real work</h2>
     <div class="stats-section-grid">
       <div class="stat-big reveal">
         <span class="stat-big-val"><span class="counter" data-target="87" data-decimal=".1" data-suffix="%">87.1%</span></span>
@@ -118,21 +122,25 @@
       <div class="stat-big reveal">
         <span class="stat-big-val"><span class="counter" data-target="90" data-suffix="%">90%</span></span>
         <div class="stat-big-lbl">Time Reduction</div>
-        <div class="stat-big-sub">Manual process eliminated</div>
+
+        <div class="stat-big-sub">Manual workflows automated</div>
       </div>
       <div class="stat-big reveal">
         <span class="stat-big-val"><span class="counter" data-target="8" data-suffix="+">8+</span></span>
         <div class="stat-big-lbl">Projects Built</div>
-        <div class="stat-big-sub">Shipped &amp; documented</div>
+        <div class="stat-big-sub">ML, data engineering &amp; automation</div>
       </div>
       <div class="stat-big reveal">
         <span class="stat-big-val"><span class="counter" data-target="2" data-suffix="">2</span></span>
         <div class="stat-big-lbl">Internships</div>
-        <div class="stat-big-sub">Real-world engineering</div>
+
+        <div class="stat-big-sub">TETFund &amp; Kontemporary</div>
+
       </div>
     </div>
   </section>
 
+<<<<<<< HEAD
   <!-- FEATURED PROJECTS -->
   <section class="section">
     <p class="section-label">Featured Work</p>
@@ -320,14 +328,283 @@ def run_batch(input_dir):
         <div class="skill-group-title"><i class="fas fa-tools"></i> Languages &amp; Tools</div>
         <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">C#</span><span class="skill-tag">C++</span><span class="skill-tag">Git / GitHub</span><span class="skill-tag">AWS Educate</span></div>
       </div>
+=======
+  <!-- CASE STUDIES (replaces expand-card project section) -->
+  <section class="section">
+    <p class="section-label">Selected Work</p>
+    <h2 class="section-title reveal">Case Studies</h2>
+    <p class="section-sub reveal">The two projects that best represent what I build and how I think.</p>
+
+    <div class="case-study-list">
+
+      <!-- Case 1: Cancer Detection -->
+      <div class="case-study-card reveal">
+        <div class="case-study-left">
+          <div class="case-study-category">Research &bull; Medical AI</div>
+          <h3 class="case-study-title">Multimodal Breast Cancer Detection</h3>
+          <p class="case-study-stack">PyTorch &bull; MedCLIP &bull; TabNet &bull; Early Fusion</p>
+          <p class="case-study-desc">
+            Designed a fusion architecture combining ultrasound image embeddings (MedCLIP, 512-dim) with clinical tabular metadata (TabNet) to overcome the limitations of single-modality screening.
+            Early fusion outperformed late fusion and both unimodal baselines.
+          </p>
+          <div class="case-study-chips">
+            <span class="chip chip-accent">87.1% ROC-AUC</span>
+            <span class="chip chip-accent">82.7% Accuracy</span>
+            <span class="chip">Outperforms Unimodal</span>
+            <span class="chip">Final Year Thesis</span>
+          </div>
+          <div class="case-study-actions">
+            <a href="https://github.com/Adejare-ml/Breast_cancer_detention_using_muilt_modal_analysis" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:.82rem;padding:8px 18px;"><i class="fab fa-github"></i> Repository</a>
+            <a href="projects.html#research" class="btn btn-outline" style="font-size:.82rem;padding:8px 18px;">Full Case <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="case-study-right">
+          <div class="case-study-metric-grid">
+            <div class="csm-block">
+              <div class="csm-val">87.1%</div>
+              <div class="csm-lbl">ROC-AUC</div>
+            </div>
+            <div class="csm-block">
+              <div class="csm-val">576</div>
+              <div class="csm-lbl">Fusion Dims</div>
+            </div>
+            <div class="csm-block">
+              <div class="csm-val">2</div>
+              <div class="csm-lbl">Modalities</div>
+            </div>
+            <div class="csm-block">
+              <div class="csm-val">+6pt</div>
+              <div class="csm-lbl">vs ResNet50</div>
+            </div>
+          </div>
+          <div class="case-study-code">
+<pre>class CancerFusionModel(nn.Module):
+  def forward(self, img, tab):
+      v = self.medclip(img)  # 512-dim
+      t = self.tabnet(tab)   # 64-dim
+      return self.head(
+          torch.cat([v, t], 1)
+      )</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2: Nigeria Scraper -->
+      <div class="case-study-card reveal">
+        <div class="case-study-left">
+          <div class="case-study-category">Data Engineering &bull; Internship</div>
+          <h3 class="case-study-title">Nigeria Electoral Data Infrastructure</h3>
+          <p class="case-study-stack">Python &bull; Selenium &bull; PostgreSQL &bull; Click CLI</p>
+          <p class="case-study-desc">
+            Built a multi-layer Selenium scraper navigating dynamically rendered state portals across all 36 Nigerian states.
+            Standard scrapers fail at depth 3+ due to session token handling &mdash; solved with explicit wait chains, exponential backoff, and a resumable CLI.
+          </p>
+          <div class="case-study-chips">
+            <span class="chip chip-accent">500k+ Records</span>
+            <span class="chip chip-accent">99.9% Accuracy</span>
+            <span class="chip chip-accent">85% Manual Entry Saved</span>
+            <span class="chip">36 States</span>
+          </div>
+          <div class="case-study-actions">
+            <a href="projects.html" class="btn btn-outline" style="font-size:.82rem;padding:8px 18px;">Full Architecture <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="case-study-right">
+          <div class="case-study-metric-grid">
+            <div class="csm-block">
+              <div class="csm-val">500k+</div>
+              <div class="csm-lbl">Records</div>
+            </div>
+            <div class="csm-block">
+              <div class="csm-val">99.9%</div>
+              <div class="csm-lbl">Accuracy</div>
+            </div>
+            <div class="csm-block">
+              <div class="csm-val">36</div>
+              <div class="csm-lbl">States</div>
+            </div>
+            <div class="csm-block">
+              <div class="csm-val">85%</div>
+              <div class="csm-lbl">Time Saved</div>
+            </div>
+          </div>
+          <div class="case-study-code">
+<pre>StateWorker(state_id)
+  ├── navigate_portal(depth=3)
+  ├── retry_handler(backoff=exp)
+  ├── extract_polling_units()
+  └── validate_and_clean()
+          │
+  bulk_insert → PostgreSQL</pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="case-study-more reveal">
+      <span>HAR Transformer &bull; Heart Disease Prediction &bull; Fraud Detection &bull; Salary Regression &bull; TETFund Pipeline</span>
+      <a href="projects.html" class="btn btn-outline" style="font-size:.82rem;padding:8px 20px;">View All Projects <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- SKILLS — radar + tags merged into one section -->
+  <section class="section skills-combined-section">
+    <p class="section-label">Skills &amp; Competencies</p>
+    <h2 class="section-title reveal">What I build with</h2>
+    <p class="section-sub reveal">Mapped by real-world depth &mdash; tools I've actually shipped projects with.</p>
+
+    <div class="skills-combined-body">
+
+      <div class="skills-viz-radar-only reveal">
+        <div class="radar-panel liquid-glass">
+          <div class="radar-label-top">Competency Radar</div>
+          <div class="radar-wrap">
+            <svg id="radarChart" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-tag-panel reveal">
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-group-title"><i class="fas fa-brain"></i> ML &amp; AI</div>
+            <div class="skill-tags">
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">Scikit-Learn</span>
+              <span class="skill-tag">MedCLIP</span>
+              <span class="skill-tag">TabNet</span>
+              <span class="skill-tag">XGBoost</span>
+              <span class="skill-tag">Transformers</span>
+              <span class="skill-tag">DINOv2</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><i class="fas fa-database"></i> Data Engineering</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Pandas</span>
+              <span class="skill-tag">NumPy</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Parquet</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><i class="fas fa-spider"></i> Automation</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Selenium</span>
+              <span class="skill-tag">openpyxl</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">Click CLI</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><i class="fas fa-tools"></i> Languages &amp; Tools</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">AWS Educate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section certs-home-section" id="certifications">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title reveal">Certifications</h2>
+    <p class="section-sub reveal">Verified completions from Anthropic, AWS, and partner institutions.</p>
+    <div class="cert-home-grid">
+
+      <div class="cert-home-card reveal" style="--ch-accent:#c2a97d;">
+        <div class="cert-home-stripe"></div>
+        <div class="cert-home-body">
+          <div class="cert-home-top">
+            <span class="cert-home-badge">Anthropic</span>
+            <span class="cert-home-date">Apr 2026</span>
+          </div>
+          <div class="cert-home-title">Claude 101</div>
+          <div class="cert-home-desc">Foundations of working effectively with large language models.</div>
+        </div>
+      </div>
+
+      <div class="cert-home-card reveal" style="--ch-accent:#7a9e6e;">
+        <div class="cert-home-stripe"></div>
+        <div class="cert-home-body">
+          <div class="cert-home-top">
+            <span class="cert-home-badge">Anthropic</span>
+          </div>
+          <div class="cert-home-title">AI Fluency: Framework &amp; Foundations</div>
+          <div class="cert-home-desc">AI literacy, responsible use frameworks, and foundational concepts.</div>
+          <div class="cert-home-partners">UCC &middot; Ringling College &middot; HEA &middot; National Forum</div>
+        </div>
+      </div>
+
+      <div class="cert-home-card reveal" style="--ch-accent:#9494b8;">
+        <div class="cert-home-stripe"></div>
+        <div class="cert-home-body">
+          <div class="cert-home-top">
+            <span class="cert-home-badge">Anthropic</span>
+          </div>
+          <div class="cert-home-title">AI Fluency for Students</div>
+          <div class="cert-home-desc">Integrating AI tools thoughtfully into academic and professional workflows.</div>
+          <div class="cert-home-partners">UCC &middot; Ringling College &middot; HEA &middot; National Forum</div>
+        </div>
+      </div>
+
+      <div class="cert-home-card reveal" style="--ch-accent:#5b8ab4;">
+        <div class="cert-home-stripe"></div>
+        <div class="cert-home-body">
+          <div class="cert-home-top">
+            <span class="cert-home-badge">Anthropic</span>
+          </div>
+          <div class="cert-home-title">Introduction to Agent Skills</div>
+          <div class="cert-home-desc">Building agentic AI systems &mdash; planning, tool use, and multi-step reasoning.</div>
+        </div>
+      </div>
+
+      <div class="cert-home-card reveal" style="--ch-accent:#f0973a;">
+        <div class="cert-home-stripe"></div>
+        <div class="cert-home-body">
+          <div class="cert-home-top">
+            <span class="cert-home-badge" style="border-color:rgba(240,151,58,.4);color:#f0973a;">AWS</span>
+          </div>
+          <div class="cert-home-title">ML Foundations</div>
+          <div class="cert-home-desc">Machine learning fundamentals via Amazon Web Services Educate.</div>
+        </div>
+      </div>
+
+      <div class="cert-home-card reveal" style="--ch-accent:#58a6ff;">
+        <div class="cert-home-stripe"></div>
+        <div class="cert-home-body">
+          <div class="cert-home-top">
+            <span class="cert-home-badge" style="border-color:rgba(88,166,255,.4);color:#58a6ff;">AfriHUB</span>
+          </div>
+          <div class="cert-home-title">Data Science Certificate</div>
+          <div class="cert-home-desc">Data science fundamentals and applied analytics.</div>
+        </div>
+      </div>
+
+>>>>>>> master
     </div>
   </section>
 
   <!-- CTA -->
   <div class="cta-strip">
     <div>
+<<<<<<< HEAD
       <h3>Open to new opportunities</h3>
       <p>ML Engineering &middot; Data Science &middot; Automation &middot; Remote available</p>
+=======
+      <h3>Available for ML engineering and data science roles</h3>
+      <p>Remote &middot; Abuja, Nigeria &middot; Open to relocation</p>
+>>>>>>> master
     </div>
     <div class="cta-actions">
       <a href="contact.html" class="btn btn-primary"><i class="fas fa-envelope"></i> Get In Touch</a>
@@ -346,4 +623,8 @@ def run_batch(input_dir):
 
 <script data-cfasync="false" src="script.js"></script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> master
